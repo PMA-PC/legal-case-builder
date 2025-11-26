@@ -1,0 +1,286 @@
+{
+    "caseSummary": {
+        "claimant": {
+            "name": "Joshua D. Shipman",
+            "dob": "June 18, 1979",
+            "age": 46,
+            "address": "2400 Thomas Ave Apt. 203, Dallas, TX 75201",
+            "phone": "754-999-0710",
+            "email": "jdavidshipman@gmail.com",
+            "employeeNumber": "000287"
+        },
+        "employment": {
+            "employer": "MGA Insurance Company, Inc. (GAINSCO Auto Insurance)",
+            "address": "3333 Lee Parkway, Suite 1200, Dallas, Texas 75219",
+            "hireDate": "November 2, 2015",
+            "terminationDate": "September 18, 2025",
+            "lengthOfService": "9 years, 10 months",
+            "finalTitle": "Claims Manager I",
+            "finalSupervisor": "Travis Jon Cober (VP)",
+            "salary": {
+                "annual": 129327,
+                "biWeekly": 4974.11
+            }
+        },
+        "protectedClasses": [
+            "Disability: Autism Spectrum Disorder, Anxiety Disorder, Panic Disorder",
+            "Age: 45 years old (over 40)",
+            "Sexual Orientation: Gay (LGBTQ+)"
+        ]
+    },
+    "timeline": [
+        {
+            "date": "November 2, 2015",
+            "event": "Hired as Claims Manager at GAINSCO",
+            "type": "Employment"
+        },
+        {
+            "date": "2015-2023",
+            "event": "Consistent 'Exceeds' or high 'Meets' performance ratings under Mark Hayes",
+            "type": "Performance"
+        },
+        {
+            "date": "August 16, 2024",
+            "event": "Filed Formal Discrimination Complaint",
+            "type": "Protected Activity",
+            "details": "Alleged sexual orientation, age, belief discrimination; hostile environment"
+        },
+        {
+            "date": "August 19, 2024",
+            "event": "Investigation Commitment",
+            "type": "Process",
+            "details": "General Counsel Drew Nachowiak directed Sola Opeola to conduct 'thorough investigation'"
+        },
+        {
+            "date": "September 26, 2024",
+            "event": "Job title 'updated' to Claims Manager I (Adverse Action #1)",
+            "type": "Retaliation",
+            "details": "41 days after complaint. Career ceiling imposed."
+        },
+        {
+            "date": "November-December 2024",
+            "event": "Scope reduction: Total Loss division removed, excluded from meetings",
+            "type": "Retaliation"
+        },
+        {
+            "date": "July 1, 2025",
+            "event": "Requested ADA Accommodation (Flexible Work Location)",
+            "type": "Protected Activity"
+        },
+        {
+            "date": "July 15-25, 2025",
+            "event": "HR delays (requested dated letter, clarification)",
+            "type": "Interactive Process Failure"
+        },
+        {
+            "date": "July 29, 2025",
+            "event": "Provided complete updated medical documentation",
+            "type": "Protected Activity"
+        },
+        {
+            "date": "July 29 - Sept 17, 2025",
+            "event": "HR Silence (7 weeks, no response)",
+            "type": "Interactive Process Failure"
+        },
+        {
+            "date": "September 7-17, 2025",
+            "event": "Recorded Meeting with Mike Parrish & Travis Cober",
+            "type": "Evidence",
+            "details": "Discussed career development. PROVES termination reason is pretext."
+        },
+        {
+            "date": "September 17, 2025",
+            "event": "Terminated",
+            "type": "Adverse Action",
+            "details": "Stated reason: 'Berating direct report'. 78 days after accommodation request."
+        },
+        {
+            "date": "October 26, 2025",
+            "event": "Good Faith Conference Requested",
+            "type": "Legal Action",
+            "details": "Formal request with document discovery list"
+        }
+    ],
+    "emails": [
+        {
+            "date": "August 16, 2024, 11:54 AM",
+            "from": "Joshua D. Shipman",
+            "to": "Stephanie Pathak (HR)",
+            "subject": "Formal Complaint - Joshua D. Shipman",
+            "summary": "Initial discrimination complaint alleging culture of harassment, hostile work environment, discrimination based on sexual orientation/age/beliefs, pay/title inequity, unobtainable metrics, scope reduction."
+        },
+        {
+            "date": "August 19, 2024, 1:12 PM",
+            "from": "Stephanie Pathak",
+            "to": "Joshua D. Shipman",
+            "summary": "Confirms General Counsel Drew has directed Sola Opeola to conduct 'thorough investigation.' Reiterates company 'does not tolerate discrimination or retaliation.'"
+        },
+        {
+            "date": "July 1, 2025, 10:27 AM",
+            "from": "Joshua Shipman",
+            "to": "Scott Macduff (HR Manager)",
+            "subject": "Accommodations Request",
+            "summary": "Submits medical accommodation letter from APRN requesting flexible work location due to anxiety/panic disorders."
+        },
+        {
+            "date": "July 15, 2025, 2:20 PM",
+            "from": "Scott Macduff",
+            "to": "Joshua Shipman",
+            "summary": "Requests dated accommodation letter, beginning of delay tactics"
+        },
+        {
+            "date": "September 29, 2025, 8:20 AM",
+            "from": "Joshua D. Shipman",
+            "to": "Stephanie Pathak, Sola Opeola",
+            "subject": "Formal Submission of Additional Grievances",
+            "summary": "Requests termination documentation, submits expanded grievances including disability discrimination, denial of accommodation, hostile work environment escalation."
+        }
+    ],
+    "comparators": [
+        {
+            "name": "Franco Glaze",
+            "role": "Manager Level 2",
+            "status": "Promoted",
+            "details": "Former subordinate promoted 2 levels above Shipman. Black Male."
+        },
+        {
+            "name": "Kim Price",
+            "role": "Manager Level 1",
+            "status": "Promoted",
+            "details": "Former team leader promoted to replace Shipman. Black Female."
+        },
+        {
+            "name": "Miles Lerman",
+            "role": "Director",
+            "status": "Promoted",
+            "details": "Promoted to Director - 4 steps above Shipman's level."
+        },
+        {
+            "name": "Joshua D. Shipman",
+            "role": "Manager Level 1",
+            "status": "Stagnant",
+            "details": "Remained at lowest peer level for 7+ years despite 'Exceeds' ratings."
+        }
+    ],
+    "damages": {
+        "economic": {
+            "total": 379000,
+            "breakdown": [
+                {
+                    "item": "Back Pay (Past Lost Wages)",
+                    "amount": 23094,
+                    "details": "65 days @ $355.29/day"
+                },
+                {
+                    "item": "Front Pay (Future Lost Wages)",
+                    "amount": 258654,
+                    "details": "2 years salary (expected time to find comparable employment)"
+                },
+                {
+                    "item": "Lost Benefits",
+                    "amount": 19200,
+                    "details": "Health Insurance $800/mo x 24 months"
+                },
+                {
+                    "item": "Unpaid PTO",
+                    "amount": 15000,
+                    "details": "Earned compensation denied"
+                },
+                {
+                    "item": "Retirement Contributions",
+                    "amount": 12000,
+                    "details": "Employer match for 2 years"
+                },
+                {
+                    "item": "Career Advancement Losses",
+                    "amount": 50000,
+                    "details": "Promotions denied due to discrimination"
+                }
+            ]
+        },
+        "nonEconomic": {
+            "total": 150000,
+            "breakdown": [
+                {
+                    "item": "Emotional Distress",
+                    "amount": 75000,
+                    "details": "Severe anxiety, panic attacks, depression"
+                },
+                {
+                    "item": "Loss of Consortium",
+                    "amount": 50000,
+                    "details": "Marriage strain, counseling required"
+                },
+                {
+                    "item": "Reputational Harm",
+                    "amount": 15000,
+                    "details": "Termination 'for cause' impacts future employment"
+                },
+                {
+                    "item": "Medical/Therapy Costs",
+                    "amount": 10000,
+                    "details": "Out of pocket costs"
+                }
+            ]
+        },
+        "punitive": {
+            "total": 100000,
+            "details": "Deliberate indifference to ADA rights, bad faith in interactive process, retaliation, manufacturing false termination reason"
+        },
+        "attorneyFees": {
+            "total": 21000,
+            "details": "Estimated legal representation, expert witnesses, filing fees"
+        },
+        "totalDemand": 650000
+    },
+    "evidence": {
+        "tier1": [
+            {
+                "title": "Recorded Meeting Transcript (Sept 7-17, 2025)",
+                "description": "Mike Parrish & Travis Cober discussing career development. PROVES termination reason ('berating') is pretext.",
+                "significance": "⭐⭐⭐⭐⭐ CRITICAL"
+            }
+        ],
+        "tier2": [
+            {
+                "title": "Medical Letters (July 1 & 29, 2025)",
+                "description": "APRN Ayla Jenson Naughton documenting autism/anxiety and need for flexible work.",
+                "significance": "⭐⭐⭐⭐⭐ ADA Proof"
+            },
+            {
+                "title": "Marriage Therapy Documentation",
+                "description": "Feb 2025 start date correlates with work stress.",
+                "significance": "⭐⭐⭐⭐ Damages"
+            }
+        ],
+        "tier3": [
+            {
+                "title": "Performance Reviews 2021-2023",
+                "description": "Consistent 'Exceeds' ratings. 'Passion' celebrated as strength.",
+                "significance": "⭐⭐⭐⭐ Pretext"
+            },
+            {
+                "title": "2024 Mid-Year Review",
+                "description": "First negative review after complaint. Cites 'burnout'.",
+                "significance": "⭐⭐⭐⭐ Retaliation"
+            }
+        ],
+        "tier4": [
+            {
+                "title": "Discrimination Complaint Email (Aug 16, 2024)",
+                "description": "Formal complaint to HR.",
+                "significance": "⭐⭐⭐⭐ Protected Activity"
+            },
+            {
+                "title": "Accommodation Email Chain (July-Sept 2025)",
+                "description": "Shows 78 days of delays and silence.",
+                "significance": "⭐⭐⭐⭐⭐ Interactive Process Failure"
+            },
+            {
+                "title": "Termination Email (Oct 1, 2025)",
+                "description": "Scott Macduff confirming false termination reason.",
+                "significance": "⭐⭐⭐⭐ Pretext"
+            }
+        ]
+    }
+}

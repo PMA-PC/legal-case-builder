@@ -1,0 +1,3 @@
+I have removed the `start` script from `package.json`. The error "ReferenceError: document is not defined" indicates that `app.js` is a client-side JavaScript file, meaning it's designed to run in a web browser, not directly with Node.js.
+
+To run this application, you should open the `index.html` file in your web browser. This will load the HTML, CSS (`style.css`), and JavaScript (`app.js`) files, allowing the application to function as intended.

@@ -1,0 +1,980 @@
+
+# ELITE LEGAL CASE BUILDER - USER GUIDE
+## Pro Se Employment Discrimination & Retaliation Case Preparation
+
+---
+
+## TABLE OF CONTENTS
+1. Overview of Your Case Type
+2. How to Use the Case Builder Application
+3. Essential Legal Elements You Must Prove
+4. Evidence Collection Strategy
+5. Preparing for the Good Faith Meeting
+6. EEOC Complaint Process
+7. Texas Workforce Commission Filing
+8. Mandatory Arbitration Preparation
+9. Visual Timeline Creation for Presentations
+10. Settlement Negotiation Strategy
+
+---
+
+## 1. OVERVIEW OF YOUR CASE TYPE
+
+### Your Legal Claims
+Based on the instructions provided, your case involves multiple interconnected claims:
+
+**A. ADA Failure to Accommodate (Primary Claim)**
+- You have autism (documented disability under ADA)
+- You requested reasonable accommodations
+- Employer failed to engage in good faith interactive process
+- Employer was grossly negligent in supporting medical needs
+
+**B. ADA Retaliation (Strong Claim)**
+- You filed discrimination complaint in 2024 (protected activity)
+- Employer took adverse actions immediately following complaint
+- Clear temporal proximity and causal connection
+- Pattern of escalating retaliation
+
+**C. Disability Discrimination**
+- Treated differently due to autism diagnosis
+- Subjected to hostile work environment
+- Held to standards outside pay/title band
+- Ultimately terminated
+
+**D. Hostile Work Environment**
+- Workplace conditions worsened progressively after complaint
+- Created intolerable working conditions
+- Forced into position where severance seemed like only option
+
+### The Compelling Narrative
+Your case tells a powerful story:
+- **2021-2023**: Strong leader with excellent performance reviews
+- **2024 Complaint**: Filed formal discrimination complaint
+- **Immediate Retaliation**: Hostile environment, reduced responsibilities
+- **Accommodation Failure**: Requests ignored or inadequately addressed
+- **Performance Manipulation**: Suddenly negative 2024 reviews despite no prior issues
+- **Termination**: Ultimate adverse action with pretextual justification
+
+### Key Strength: The Performance Review Contrast
+The stark contrast between your 2021-2023 excellence and 2024 decline **immediately following your complaint** is powerful evidence of retaliation and pretext.
+
+---
+
+## 2. HOW TO USE THE CASE BUILDER APPLICATION
+
+### Step-by-Step Process
+
+**Phase 1: Complete the Questionnaire (Sections 1-16)**
+1. Set aside 3-4 hours to complete all sections thoroughly
+2. Have all documents ready (performance reviews, emails, accommodation requests)
+3. Be detailed and specific - more information is better
+4. For dates, be as precise as possible
+5. Application auto-saves after each section
+6. You can return anytime to update answers
+
+**Phase 2: Review Analysis**
+1. Click "Analyze My Case" after completing all sections
+2. Review your case strength assessment for each claim type
+3. Study the timeline visualization
+4. Note any evidence gaps identified
+5. Follow recommendations to strengthen weak areas
+
+**Phase 3: Generate Documents**
+1. Navigate to Documents section
+2. Generate and review each document:
+   - Timeline Document (for your records and presentations)
+   - EEOC Complaint Draft
+   - TWC Complaint Draft
+   - Demand Letter for Good Faith Meeting
+   - Evidence Checklist
+3. Download and save all documents
+4. Customize as needed for your specific situation
+
+**Phase 4: Prepare for Good Faith Meeting**
+1. Review the Meeting Agenda
+2. Study the Presentation Outline
+3. Practice your talking points
+4. Gather visual materials (performance review comparison, timeline)
+5. Prepare settlement position
+
+**Phase 5: Export and Backup**
+1. Export all data as JSON backup
+2. Print all documents for your records
+3. Create organized binder with all materials
+
+---
+
+## 3. ESSENTIAL LEGAL ELEMENTS YOU MUST PROVE
+
+### For ADA Failure to Accommodate Claim
+
+**Element 1: You are a qualified individual with a disability**
+- Evidence needed: Autism diagnosis from medical professional
+- Medical documentation showing how autism substantially limits major life activities
+- Evidence you can perform essential job functions with accommodation
+
+**Element 2: Employer knew of disability and limitations**
+- Evidence needed: Documentation of disability disclosure
+- Communications mentioning your autism or accommodation needs
+- HR records showing they were informed
+
+**Element 3: Employer failed to provide reasonable accommodation**
+- Evidence needed: Your accommodation request(s)
+- Lack of response or inadequate response from employer
+- No meaningful interactive process
+- Timeline showing delays or inaction
+
+**Element 4: Employer failed to engage in good faith interactive process**
+- Evidence needed: Your attempts to discuss accommodations
+- Employer's failure to meet with you or discuss options
+- Lack of documentation from employer about accommodation considerations
+- No legitimate undue hardship justification from employer
+
+### For ADA Retaliation Claim
+
+**Element 1: Protected Activity**
+- Evidence needed: Copy of your 2024 discrimination complaint
+- Proof of submission (email confirmation, certified mail receipt)
+- Dates showing when complaint was filed
+
+**Element 2: Adverse Employment Action**
+- Evidence needed: Documentation of ALL adverse actions after complaint:
+  * Negative performance reviews
+  * Reduction in job responsibilities
+  * Removal from projects
+  * Hostile treatment
+  * Changed working conditions
+  * Eventual termination
+- Dates of each adverse action
+
+**Element 3: Causal Connection**
+- Evidence needed: Timeline showing proximity between complaint and adverse actions
+- Statements from supervisors showing awareness of complaint
+- Pattern of retaliation intensifying over time
+- Sudden change in treatment after previously positive relationship
+
+**Element 4: Temporal Proximity**
+- Evidence needed: Dates showing adverse actions occurred shortly after complaint
+- "Shortly after" can range from days to a few months
+- The closer in time, the stronger the inference of causation
+
+### For Pretext Evidence
+
+**Critical Elements:**
+- Performance reviews from 2021, 2022, 2023 showing excellence
+- 2024 performance review showing sudden decline
+- Evidence you were never told about performance problems before 2024
+- Lack of progressive discipline
+- Inconsistent reasons for adverse actions
+- Comparator evidence (others treated better)
+
+---
+
+## 4. EVIDENCE COLLECTION STRATEGY
+
+### Critical Documents You Must Have
+
+**Performance Documentation**
+□ 2021 Performance Review
+□ 2022 Performance Review  
+□ 2023 Performance Review
+□ 2024 Performance Review
+□ Any mid-year reviews or feedback
+□ Emails with positive feedback
+□ Awards, bonuses, or recognition
+
+**Complaint and Accommodation Documentation**
+□ Copy of 2024 discrimination complaint
+□ Proof of submission
+□ Employer's response (or lack thereof)
+□ All accommodation requests (written)
+□ Medical documentation supporting accommodation needs
+□ Any responses from employer about accommodations
+□ Documentation of interactive process (or lack of it)
+
+**Retaliation Evidence**
+□ Emails showing changed treatment
+□ Documentation of responsibility changes
+□ Meeting notes or calendars showing exclusion
+□ Witness statements
+□ Communications showing hostile treatment
+□ Any disciplinary notices
+
+**Termination Documentation**
+□ Termination notice
+□ Severance offer documents
+□ Exit interview notes
+□ Final paycheck and benefits information
+
+**Damage Documentation**
+□ Medical records showing emotional distress
+□ Therapist notes
+□ Medication records
+□ Statements from family about impact
+□ Lost wage calculations
+□ Job search records
+
+### Organizing Your Evidence
+
+**Create a Master Timeline Document**
+Date | Event | Document Evidence | Witness
+-----|-------|-------------------|--------
+[Year-Month-Day] | [Description] | [File name/location] | [Name]
+
+**Use Color Coding:**
+- BLUE: Performance reviews and positive feedback
+- RED: Discrimination complaint and accommodation requests
+- ORANGE: Adverse actions and retaliation
+- GREEN: Termination events
+- PURPLE: Damage evidence
+
+---
+
+## 5. PREPARING FOR THE GOOD FAITH MEETING
+
+### Purpose of the Good Faith Meeting
+Before proceeding to EEOC formal investigation or arbitration, requesting a good faith meeting serves several purposes:
+1. Demonstrates your willingness to resolve dispute amicably
+2. Gives employer opportunity to correct wrongs
+3. Creates record of your attempts to resolve
+4. May lead to favorable settlement
+5. Strengthens your position if litigation is necessary
+
+### Meeting Agenda Structure
+
+**Opening (5 minutes)**
+- Thank participants for attending
+- State purpose: resolve employment discrimination dispute
+- Outline agenda
+- Establish respectful tone
+
+**Timeline Presentation (15 minutes)**
+- Present visual timeline showing:
+  * Employment start date
+  * Excellent performance 2021-2023
+  * 2024 discrimination complaint
+  * Accommodation requests
+  * Adverse actions following complaint
+  * 2024 negative review
+  * Termination
+- Emphasize temporal connections
+
+**Performance Review Analysis (10 minutes)**
+- Present comparison of reviews:
+  * 2021: [Rating] - [Key positive feedback]
+  * 2022: [Rating] - [Key positive feedback]
+  * 2023: [Rating] - [Key positive feedback]
+  * 2024: [Rating] - [Sudden criticisms]
+- Highlight: No prior notice of performance problems
+- Ask: Why the sudden change immediately after complaint?
+
+**Accommodation Discussion (10 minutes)**
+- Detail accommodation requests made
+- Explain how autism affects job performance
+- Describe employer's response (or lack thereof)
+- Explain ADA's interactive process requirement
+- Demonstrate employer's failure
+
+**Retaliation Evidence (10 minutes)**
+- Systematically present each adverse action
+- Show dates in relation to complaint
+- Describe hostile environment created
+- Present comparator evidence if available
+- Show pattern of escalating retaliation
+
+**Legal Claims Overview (5 minutes)**
+- State claims clearly:
+  * ADA Failure to Accommodate
+  * ADA Retaliation
+  * Disability Discrimination
+  * Hostile Work Environment
+- Reference relevant legal standards
+- State you have strong evidence for each claim
+
+**Damages Discussion (5 minutes)**
+- Emotional distress (describe impact)
+- Damage to personal relationships
+- Lost income: [Calculate back pay]
+- Medical expenses: [Amount]
+- Career damage: [Describe]
+- Future lost earnings: [Estimate]
+
+**Remedies Requested (5 minutes)**
+Present specific demands:
+1. **Investigation Requirements:**
+   - Full review of discrimination complaint handling
+   - Analysis of performance review disparities
+   - Review of accommodation process
+   - Explanation of job responsibility changes
+
+2. **Monetary Remedies:**
+   - Back pay: $[amount]
+   - Compensatory damages: $[amount]
+   - Punitive damages: $[amount]
+   - Benefits restoration
+   - Medical expenses reimbursement
+
+3. **Non-Monetary Remedies:**
+   - Expungement of negative 2024 review
+   - Neutral/positive reference
+   - Policy changes re: disability accommodation
+   - Training for management
+   - Independent review of practices
+
+**Settlement Discussion (10 minutes)**
+- State willingness to discuss reasonable resolution
+- Invite employer's perspective
+- Explore settlement options
+- Discuss confidentiality terms if applicable
+
+**Next Steps (5 minutes)**
+- Establish timeline for response
+- Discuss follow-up meeting if needed
+- Confirm contact information
+- Thank participants
+
+### Key Presentation Tips
+
+**DO:**
+- Remain calm and professional
+- Stick to facts and documentation
+- Use visual aids (timeline, performance chart)
+- Be prepared with specific examples
+- Show willingness to listen
+- Bring all evidence organized in binder
+- Have witness available if possible
+
+**DON'T:**
+- Get emotional or angry
+- Make threats
+- Exaggerate or embellish
+- Accept first offer without consideration
+- Sign anything without reviewing carefully
+- Speak without documentation to support claims
+
+### What to Bring to Meeting
+□ Complete evidence binder with tabs
+□ Visual timeline (poster or printed large format)
+□ Performance review comparison chart
+□ Written demand letter
+□ Calculator for settlement discussions
+□ Notepad for taking notes
+□ Recording device (if legal in your state and disclosed)
+□ Support person (if allowed)
+□ Copy of ADA and relevant regulations
+
+---
+
+## 6. EEOC COMPLAINT PROCESS
+
+### Filing Deadlines - CRITICAL
+- **300 days** from discriminatory act for Texas (has state agency)
+- Filing means RECEIVED by EEOC before deadline expires
+- Count from: Last discriminatory act OR continuing violation
+- For your case: Latest adverse action or termination date
+
+### How to File
+**Option 1: Online**
+- Visit: https://publicportal.eeoc.gov/Portal/Login.aspx
+- Create account and complete online intake questionnaire
+
+**Option 2: In Person**
+- Dallas District Office: 207 S. Houston St., 3rd Floor, Dallas, TX 75202
+- San Antonio District Office: 5410 Fredericksburg Road, Suite 200, San Antonio, TX 78229
+
+**Option 3: By Mail**
+- Send to appropriate district office
+- Use certified mail with return receipt
+
+### Information Needed for EEOC Charge
+
+**Your Information:**
+- Full name, address, phone, email
+- Number of employees at company
+
+**Employer Information:**
+- Full legal name of company
+- Parent company name (State Farm)
+- Address where you worked
+- HR Director name and contact
+
+**Charge Details:**
+- Basis: Disability (Autism), Retaliation
+- Discriminatory acts: Failure to accommodate, retaliation, termination
+- Dates of discrimination
+- Detailed narrative (use application-generated draft)
+
+### EEOC Process Timeline
+
+**Phase 1: Charge Intake (1-2 weeks)**
+- EEOC reviews charge for jurisdiction
+- May contact you for clarification
+- Charge is officially filed
+
+**Phase 2: Employer Notification (10 days)**
+- EEOC sends charge to employer
+- Employer has opportunity to respond
+
+**Phase 3: Mediation Invitation (15-30 days)**
+- EEOC may offer mediation
+- Voluntary for both parties
+- Success rate: 70%
+- Confidential process
+- **Consider accepting** - can lead to faster resolution
+
+**Phase 4: Investigation (if no mediation or mediation fails)**
+- EEOC requests documents from employer
+- Employer submits position statement (their side)
+- **You must submit rebuttal** to employer's statement
+- EEOC may interview witnesses
+- Timeline: 6-10 months typically
+
+**Phase 5: Determination**
+- **Cause Finding**: EEOC believes discrimination occurred
+  * EEOC may negotiate with employer
+  * EEOC may litigate (rare)
+  * You get right-to-sue letter
+- **No Cause Finding**: EEOC does not find sufficient evidence
+  * You still get right-to-sue letter
+  * Can still pursue lawsuit
+
+**Phase 6: Right to Sue Letter**
+- Allows you to file lawsuit in federal court
+- **90-day deadline** to file lawsuit after receiving letter
+- Can request right-to-sue letter after 180 days even if investigation ongoing
+
+### Pro Se Tips for EEOC Process
+
+**Writing Your Charge Narrative:**
+- Tell story chronologically
+- Be specific with dates, names, events
+- Connect each adverse action to protected activity
+- Explain how disability wasn't accommodated
+- Describe emotional and financial impact
+- Cite specific ADA violations
+
+**Responding to Employer's Position Statement:**
+- Employer will deny allegations and provide their justification
+- Read carefully and note every false or misleading statement
+- Write detailed rebuttal addressing each point
+- Provide documentation contradicting employer's claims
+- Focus on most important disputed facts
+- Point out what employer DIDN'T address or deny
+
+**EEOC Interview:**
+- Be truthful and consistent
+- Use your timeline
+- Bring all documentation
+- Answer questions directly
+- If you don't know, say so
+- Clarify any misunderstandings immediately
+- Follow up in writing after interview
+
+---
+
+## 7. TEXAS WORKFORCE COMMISSION FILING
+
+### TWC Civil Rights Division
+
+**Filing Requirements:**
+- Must file within **180 days** of discriminatory act
+- TWC has work-sharing agreement with EEOC
+- Filing with one agency often satisfies both (dual filing)
+
+**How to File:**
+- Online: https://www.twc.texas.gov/jobseekers/how-submit-employment-discrimination-complaint
+- Email: CivilRightsIntake@twc.texas.gov  
+- Mail: Texas Workforce Commission
+        Civil Rights Division
+        101 E. 15th Street
+        Austin, TX 78778-0001
+
+**Required Information:**
+□ Your name, address, phone
+□ Employer name and address
+□ Number of employees
+□ Dates of employment
+□ Description of discrimination
+□ Basis (disability, retaliation)
+□ When discrimination occurred
+□ Your signature
+
+### TWC Process
+1. TWC reviews for jurisdiction
+2. If accepted, forwards to EEOC (dual filing)
+3. Follow EEOC process
+4. Receive determination from EEOC
+5. TWC adopts EEOC findings
+
+### Advantage of Dual Filing
+- Preserves both federal and state law claims
+- Extends filing deadline to 300 days
+- Allows state law remedies in addition to federal
+
+---
+
+## 8. MANDATORY ARBITRATION PREPARATION
+
+### Understanding Your Arbitration Requirement
+
+**Key Facts:**
+- Arbitration mandated in June 2025 by company
+- Required after original complaint and after retaliation began
+- Binding arbitration replaces court lawsuit
+- Different rules and procedures than court
+
+### Arbitration vs. Court
+
+**Similarities:**
+- Present evidence and witnesses
+- Make legal arguments
+- Decision is binding
+- Can seek similar remedies
+
+**Differences:**
+- No jury - arbitrator decides
+- Limited discovery
+- Limited right to appeal
+- Faster process
+- Private and confidential
+- Less formal rules of evidence
+
+### Preparing for Arbitration
+
+**Pre-Arbitration Steps:**
+1. **Complete EEOC Process First**
+   - Must exhaust administrative remedies
+   - Obtain right-to-sue letter
+   - Then proceed to arbitration
+
+2. **Select Arbitrator**
+   - Usually from AAA (American Arbitration Association) roster
+   - Research potential arbitrators
+   - Look for employment law experience
+   - Review past decisions if available
+
+3. **Arbitration Demand**
+   - File with AAA
+   - Pay filing fee (may be employer's responsibility for employment cases)
+   - Serve employer with demand
+   - State all claims and relief sought
+
+4. **Discovery**
+   - More limited than court
+   - Request key documents:
+     * Your personnel file
+     * Performance reviews for you and comparators
+     * Accommodation request and response records
+     * Emails between decision-makers
+     * Company policies
+     * Witness statements
+   - Take depositions of key witnesses if allowed
+
+5. **Pre-Hearing Brief**
+   - Detailed written statement of your case
+   - Statement of facts
+   - Legal claims and elements
+   - Evidence list
+   - Witness list
+   - Relief requested
+
+### Arbitration Hearing Strategy
+
+**Opening Statement:**
+- Tell your story clearly and concisely
+- Preview evidence
+- Explain what you'll prove
+- Make it memorable
+
+**Your Testimony:**
+- You will be main witness
+- Direct examination: tell your story chronologically
+- Use documents to support testimony
+- Stay calm during cross-examination
+- Answer truthfully
+- If you don't know, say so
+
+**Documentary Evidence:**
+- Pre-mark all exhibits
+- Create exhibit list
+- Authenticate documents
+- Explain significance
+
+**Witness Testimony:**
+- Call supportive witnesses if available
+- Prepare witnesses beforehand
+- Ask clear, simple questions
+- Use leading questions on cross-examination
+
+**Expert Testimony:**
+- Consider vocational expert (lost earning capacity)
+- Consider psychological expert (emotional distress)
+- Consider ADA compliance expert (reasonable accommodation)
+
+**Closing Argument:**
+- Summarize evidence
+- Explain how you proved each element
+- Discuss damages with specificity
+- Request specific relief
+- Make final appeal for justice
+
+### Pro Se in Arbitration
+
+**Advantages of Representing Yourself:**
+- No attorney fees
+- You know your story best
+- Can be effective if well-prepared
+
+**Challenges:**
+- Employer will have experienced attorney
+- Legal rules and procedures complex
+- Harder to get evidence from employer
+- Difficult to conduct cross-examination
+
+**Maximizing Your Chances:**
+- Study Federal Rules of Evidence basics
+- Practice direct and cross-examination
+- Prepare thorough outline
+- Use visual aids effectively
+- Stay organized
+- Remain professional
+- Focus on strongest evidence
+
+---
+
+## 9. VISUAL TIMELINE CREATION FOR PRESENTATIONS
+
+### Creating Powerful Visual Timeline
+
+**Purpose:**
+Visual timeline demonstrates retaliation pattern clearly and memorably. It shows the dramatic shift from excellence to adversity following your protected activity.
+
+**Timeline Components:**
+
+**Top Track: Career Highlights (2021-2023)**
+- Green markers for positive events
+- 2021: "Excellent Performance Review" + key achievement
+- 2022: "Excellent Performance Review" + key achievement  
+- 2023: "Excellent Performance Review" + key achievement
+- "Recognized as Strong Leader"
+
+**Middle Track: Critical Events (2024)**
+- RED marker: "Discrimination Complaint Filed - [Date]"
+- PURPLE markers: "Accommodation Requests - [Dates]"
+- "Mark Hayes Departure - [Date]"
+
+**Bottom Track: Adverse Actions (2024)**
+- Orange markers for each adverse action:
+  * "Job Responsibilities Reduced - [Date]"
+  * "Excluded from Projects - [Date]"
+  * "Subjected to Hostile Treatment - [Date]"
+  * "Poor Performance Review - [Date]" (contrast with previous)
+  * "Severance Offer (Declined) - [Date]"
+  * "TERMINATION - [Date]"
+
+**Visual Elements:**
+- Use arrow showing downward trajectory after complaint
+- Use contrasting colors: green (positive) → red (complaint) → orange (retaliation)
+- Include time measurements showing proximity
+- Add call-out boxes with key quotes or statistics
+
+**Performance Graph Component:**
+Create line graph showing:
+- X-axis: Years 2021-2024
+- Y-axis: Performance Rating
+- Line shows steady high performance 2021-2023
+- Sharp drop in 2024
+- Annotate with "Complaint Filed" marker at the drop point
+
+### Tools for Creating Timeline
+
+**Option 1: PowerPoint/Keynote**
+- Use SmartArt timeline
+- Professional and easy to present
+- Can print as poster
+
+**Option 2: Canva**
+- Free online tool
+- Professional templates
+- Can create infographic style
+
+**Option 3: Timeline Software**
+- TrialLine.net (designed for legal cases)
+- TimelineJS (free, online)
+- Preceden (timeline software)
+
+**Option 4: Hand-Drawn/Poster Board**
+- Large poster board
+- Colored markers
+- Printed labels and documents
+- Very visual for in-person meetings
+
+### Presenting Your Timeline
+
+**At Good Faith Meeting:**
+1. Display timeline prominently (poster or screen)
+2. Walk through chronologically
+3. Pause at key transition points
+4. Let visual speak for itself
+5. Reference specific evidence for each point
+
+**In EEOC Submission:**
+- Include as attachment to charge
+- Reference in narrative
+- Use to organize rebuttal
+
+**In Arbitration:**
+- Use in opening statement
+- Return to during testimony
+- Feature in closing argument
+- Submit as exhibit
+
+---
+
+## 10. SETTLEMENT NEGOTIATION STRATEGY
+
+### Calculating Your Case Value
+
+**Economic Damages:**
+1. **Back Pay**
+   - Salary from termination date to present
+   - Less interim earnings (if any)
+   - Example: $[Annual Salary/12] × [Months unemployed]
+
+2. **Front Pay**
+   - Future lost earnings
+   - Estimate years until you would have worked
+   - Consider raises and promotions
+
+3. **Lost Benefits**
+   - Health insurance value
+   - Retirement contributions
+   - Other benefits
+
+4. **Medical Expenses**
+   - Therapy costs
+   - Medication costs
+   - Future treatment needs
+
+**Non-Economic Damages:**
+1. **Emotional Distress**
+   - Pain and suffering
+   - Anxiety and depression
+   - Damage to relationships
+   - Loss of reputation
+   - Loss of enjoyment of life
+
+**Punitive Damages:**
+- Available for egregious conduct
+- Meant to punish employer
+- Can be substantial
+
+### Settlement Ranges
+
+**Your Initial Demand:**
+Should be higher than what you'll accept but must be justifiable:
+- Total economic damages: $[X]
+- Emotional distress: $[Y]
+- Punitive damages: $[Z]
+- **Total Initial Demand: $[X+Y+Z]**
+
+**Minimum Acceptable Settlement:**
+Know your bottom line before negotiations:
+- Must cover actual losses
+- Must provide some compensation for harm suffered
+- Consider non-monetary terms
+- **Your Walk-Away Number: $[___]**
+
+**Realistic Settlement Zone:**
+Consider:
+- Strength of evidence
+- Employer's litigation costs
+- Risk of going to trial
+- Time value of resolution
+- **Likely Settlement Range: $[X] - $[Y]**
+
+### Settlement Components
+
+**Monetary Terms:**
+- Lump sum payment
+- Structured settlement
+- Payment schedule
+- Tax treatment
+
+**Non-Monetary Terms:**
+- Neutral reference
+- Positive reference
+- Removal of negative review from file
+- Agreement not to contest unemployment
+- No admission of wrongdoing (standard)
+- Confidentiality (negotiate limits)
+- Non-disparagement (mutual)
+
+**Policy Changes:**
+- Company commits to ADA training
+- Review accommodation process
+- Policy improvements
+- (These are harder to get but valuable)
+
+### Negotiation Tactics
+
+**Strengths to Emphasize:**
+- Clear timeline showing retaliation
+- Performance review contrast
+- Documentation of accommodation failures
+- Emotional impact with medical support
+- Employer's legal exposure
+
+**Responding to Common Defenses:**
+
+**"Performance issues justified termination"**
+→ Counter: "Then why no performance issues noted in 2021-2023? Why sudden problems only after complaint?"
+
+**"We tried to accommodate"**  
+→ Counter: "Show me documentation of interactive process. Show me when you met with me. Show me accommodations offered and considered."
+
+**"Employee was difficult to work with"**
+→ Counter: "Not reflected in any review before complaint. Documented excellent teamwork 2021-2023. This is pretext."
+
+**"Too much money"**
+→ Counter: "This is what I lost. This is harm you caused. Your litigation costs will exceed this. Let's resolve fairly."
+
+### When to Accept Settlement
+
+**Accept if:**
+- Offer meets your minimum needs
+- Risk of losing at trial is significant  
+- Need money now
+- Want to move on with life
+- Offer includes meaningful non-monetary terms
+
+**Don't Accept if:**
+- Offer unreasonably low
+- Evidence extremely strong
+- Principle matters more than money
+- Can afford to wait and litigate
+
+### Settlement Agreement Terms to Review
+
+**Must Include:**
+- Total payment amount
+- Payment schedule
+- Tax treatment clarity
+- Release terms (what claims are released)
+- Confidentiality provisions
+- Non-disparagement terms
+- Reference agreement
+- No admission of liability
+- Enforcement provisions
+
+**Watch Out For:**
+- Overly broad releases (releasing unknown claims)
+- Unconscionable confidentiality (preventing you from talking to anyone)
+- Payment contingencies
+- Unclear terms
+- Missing promised provisions
+
+---
+
+## FINAL CHECKLIST FOR SUCCESS
+
+### Before Good Faith Meeting
+□ Complete all sections of Case Builder App
+□ Generate and review all documents
+□ Organize all evidence in binder
+□ Create visual timeline
+□ Practice presentation
+□ Calculate damages and settlement range
+□ Prepare settlement position
+□ Review ADA legal standards
+□ Dress professionally
+□ Get good night sleep
+
+### Before EEOC Filing
+□ Verify deadline (300 days)
+□ Complete intake questionnaire
+□ Prepare detailed narrative
+□ Gather supporting documents
+□ Make copies of everything
+□ Note charge number
+□ Calendar all deadlines
+
+### Before Arbitration
+□ Obtain right-to-sue letter
+□ File arbitration demand
+□ Pay filing fees
+□ Conduct discovery
+□ Identify and prepare witnesses
+□ Organize exhibits
+□ Prepare direct and cross-examination
+□ Write pre-hearing brief
+□ Prepare opening and closing statements
+□ Arrange for visual aids
+□ Professional attire ready
+
+### Evidence Organization
+□ Performance reviews chronologically organized
+□ Complaint and accommodation requests highlighted
+□ Timeline document completed
+□ Emails organized by topic and date
+□ Witness list with contact information
+□ Medical documentation compiled
+□ Damage calculation completed
+□ Comparator evidence identified
+□ Everything indexed and tabbed
+
+---
+
+## REMEMBER
+
+**Your Strongest Arguments:**
+1. Excellent performance 2021-2023 vs. sudden decline in 2024
+2. Temporal proximity: Adverse actions immediately after complaint
+3. No prior notice of performance problems
+4. Failure to accommodate despite requests
+5. Pattern of escalating retaliation
+6. Severe emotional and financial harm
+
+**Keys to Success:**
+- Thorough documentation
+- Clear timeline
+- Professional demeanor
+- Knowledge of legal elements
+- Persistence
+- Organization
+- Preparation
+
+**You Can Do This:**
+While having an attorney is often beneficial, many pro se litigants successfully pursue employment discrimination claims. Your case has strong factual support. With thorough preparation using this guide and the Case Builder application, you can effectively present your case and seek justice.
+
+---
+
+## RESOURCES
+
+**EEOC Resources:**
+- www.eeoc.gov
+- EEOC Dallas: (800) 669-4000
+
+**Texas Workforce Commission:**
+- www.twc.texas.gov/civil-rights-division
+- (888) 452-4778
+
+**ADA Resources:**
+- ADA.gov
+- Job Accommodation Network: askjan.org
+
+**Legal Aid:**
+- Texas RioGrande Legal Aid: (888) 988-9996
+- Lone Star Legal Aid: (800) 733-8394
+
+**Pro Se Resources:**
+- www.uscourts.gov/forms/pro-se-forms
+- www.nolo.com (legal information)
+
+---
+
+*This guide is for informational purposes only and does not constitute legal advice. Consider consulting with an employment attorney for case-specific guidance.*
+
+**Document Version:** 1.0  
+**Date:** November 10, 2025  
+**Prepared for:** Legal Case Review Project

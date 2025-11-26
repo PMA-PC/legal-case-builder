@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Legal Case Builder - Joshua D. Shipman vs. GAINSCO</title>
+  <style>
+    :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* Legal theme colors */
+  --color-legal-blue: rgba(25, 47, 89, 1);
+  --color-legal-gold: rgba(184, 134, 11, 1);
+  --color-legal-blue-light: rgba(37, 70, 133, 1);
+  
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  /* Background color tokens (Light Mode) */
+  --color-bg-1: rgba(59, 130, 246, 0.08);
+  --color-bg-2: rgba(245, 158, 11, 0.08);
+  --color-bg-3: rgba(34, 197, 94, 0.08);
+  --color-bg-4: rgba(239, 68, 68, 0.08);
+  --color-bg-5: rgba(147, 51, 234, 0.08);
+  --color-bg-6: rgba(249, 115, 22, 0.08);
+  --color-bg-7: rgba(236, 72, 153, 0.08);
+  --color-bg-8: rgba(6, 182, 212, 0.08);
+
+  /* Semantic Color Tokens (Light Mode) */
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-legal-blue);
+  --color-primary-hover: var(--color-legal-blue-light);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+  --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+  --focus-ring: 0 0 0 3px var(--color-focus-ring);
+  --focus-outline: 2px solid var(--color-primary);
+
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+
+  /* Spacing */
+  --space-4: 4px;
+  --space-6: 6px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: var(--color-charcoal-700);
+    --color-surface: var(--color-charcoal-800);
+    --color-text: var(--color-gray-200);
+    --color-text-secondary: rgba(var(--color-gray-300), 0.7);
+    --color-primary: var(--color-legal-gold);
+    --color-primary-hover: rgba(184, 134, 11, 0.8);
+    --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+    --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+  }
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  -webkit-font-smoothing: antialiased;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--color-legal-blue) 0%, var(--color-legal-blue-light) 100%);
+  color: white;
+  padding: var(--space-24) var(--space-32);
+  box-shadow: var(--shadow-md);
+}
+
+.header h1 {
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: var(--space-8);
+}
+
+.header p {
+  font-size: var(--font-size-base);
+  opacity: 0.9;
+  margin: 0;
+}
+
+.nav-tabs {
+  display: flex;
+  gap: var(--space-4);
+  padding: 0 var(--space-32);
+  background-color: var(--color-surface);
+  border-bottom: 2px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.nav-tab {
+  padding: var(--space-16) var(--space-20);
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-standard);
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: var(--color-text);
+  background-color: var(--color-secondary);
+}
+
+.nav-tab.active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.main-content {
+  flex: 1;
+  padding: var(--space-32);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-card-border);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-24);
+  margin-bottom: var(--space-24);
+}
+
+.card h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-16);
+  color: var(--color-text);
+}
+
+.card h3 {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  margin-bottom: var(--space-12);
+  color: var(--color-text);
+}
+
+.form-group {
+  margin-bottom: var(--space-24);
+}
+
+.form-label {
+  display: block;
+  font-weight: var(--font-weight-medium);
+  margin-bottom: var(--space-8);
+  color: var(--color-text);
+}
+
+.form-input, .form-textarea, .form-select {
+  width: 100%;
+  padding: var(--space-12);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  font-family: var(--font-family-base);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  transition: border-color var(--duration-fast);
+}
+
+.form-input:focus, .form-textarea:focus, .form-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: var(--focus-ring);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  padding: var(--space-12) var(--space-20);
+  border-radius: var(--radius-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-medium);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-standard);
+  border: none;
+  text-decoration: none;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--color-primary-hover);
+}
+
+.btn-secondary {
+  background: var(--color-secondary);
+  color: var(--color-text);
+  border: 1px solid var(--color-border);
+}
+
+.btn-secondary:hover {
+  background: var(--color-secondary-hover);
+}
+
+.btn-small {
+  padding: var(--space-6) var(--space-12);
+  font-size: var(--font-size-sm);
+}
+
+.btn-group {
+  display: flex;
+  gap: var(--space-12);
+  margin-top: var(--space-12);
+}
+
+.saved-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-6);
+  color: var(--color-success);
+  font-size: var(--font-size-sm);
+  margin-left: var(--space-12);
+}
+
+.timeline {
+  position: relative;
+  padding-left: var(--space-32);
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--color-border);
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: var(--space-24);
+  padding-left: var(--space-24);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  border: 2px solid var(--color-surface);
+}
+
+.timeline-date {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--space-6);
+}
+
+.timeline-content {
+  background-color: var(--color-bg-1);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  border-left: 3px solid var(--color-primary);
+}
+
+.status-badge {
+  display: inline-block;
+  padding: var(--space-4) var(--space-12);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+}
+
+.status-success {
+  background-color: rgba(var(--color-teal-500-rgb), 0.15);
+  color: var(--color-success);
+}
+
+.status-warning {
+  background-color: rgba(var(--color-orange-500-rgb), 0.15);
+  color: var(--color-warning);
+}
+
+.status-error {
+  background-color: rgba(var(--color-red-500-rgb), 0.15);
+  color: var(--color-error);
+}
+
+.status-info {
+  background-color: var(--color-bg-1);
+  color: var(--color-info);
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal-content {
+  background-color: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: var(--space-32);
+  max-width: 800px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-24);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: var(--font-size-3xl);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  padding: 0;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-close:hover {
+  color: var(--color-text);
+}
+
+.analysis-result {
+  background-color: var(--color-bg-1);
+  padding: var(--space-20);
+  border-radius: var(--radius-base);
+  margin-bottom: var(--space-20);
+  border-left: 4px solid var(--color-primary);
+}
+
+.confidence-meter {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  margin-top: var(--space-8);
+}
+
+.confidence-bar {
+  flex: 1;
+  height: 8px;
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-error) 0%, var(--color-warning) 50%, var(--color-success) 100%);
+  transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.question-card {
+  background-color: var(--color-bg-4);
+  padding: var(--space-20);
+  border-radius: var(--radius-base);
+  margin-bottom: var(--space-20);
+  border-left: 4px solid var(--color-error);
+}
+
+.answer-card {
+  background-color: var(--color-bg-3);
+  padding: var(--space-16);
+  border-radius: var(--radius-base);
+  margin-top: var(--space-12);
+  border-left: 4px solid var(--color-success);
+}
+
+.evidence-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-12);
+  padding: var(--space-12);
+  background-color: var(--color-bg-2);
+  border-radius: var(--radius-base);
+  margin-top: var(--space-8);
+}
+
+.file-icon {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: white;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+}
+
+.search-box {
+  display: flex;
+  gap: var(--space-12);
+  margin-bottom: var(--space-24);
+}
+
+.search-input {
+  flex: 1;
+}
+
+.search-result {
+  background-color: var(--color-surface);
+  padding: var(--space-20);
+  border-radius: var(--radius-base);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--space-16);
+}
+
+.search-result h4 {
+  color: var(--color-primary);
+  margin-bottom: var(--space-8);
+}
+
+.last-saved {
+  position: fixed;
+  bottom: var(--space-24);
+  right: var(--space-24);
+  background-color: var(--color-surface);
+  padding: var(--space-12) var(--space-20);
+  border-radius: var(--radius-base);
+  box-shadow: var(--shadow-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  border: 1px solid var(--color-border);
+}
+
+.disclaimer {
+  background-color: var(--color-bg-2);
+  padding: var(--space-20);
+  border-radius: var(--radius-base);
+  border-left: 4px solid var(--color-warning);
+  margin-bottom: var(--space-24);
+}
+
+.loading {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.char-count {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: var(--space-16);
+  }
+  
+  .header {
+    padding: var(--space-16);
+  }
+  
+  .nav-tabs {
+    padding: 0 var(--space-16);
+  }
+  
+  .btn-group {
+    flex-direction: column;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
+  </style>
+</head>
+<body>
+  <div id="auth-container" class="auth-container">
+    <div class="auth-card">
+        <h2>Login / Sign Up</h2>
+        <div class="form-group">
+            <label class="form-label" for="auth-email">Email</label>
+            <input type="email" class="form-input" id="auth-email" placeholder="Enter your
+      email">
+        </div>
+        <div class="form-group">
+            <label class="form-label" for="auth-password">Password</label>
+            <input type="password" class="form-input" id="auth-password" placeholder="Enter your
+      password">
+        </div>
+        <div class="btn-group">
+            <button class="btn btn-primary" id="btn-login">Login</button>
+            <button class="btn btn-secondary" id="btn-signup">Sign Up</button>
+        </div>
+        <p id="auth-error" style="color: var(--color-error); margin-top: var(--space-12);"></p>
+    </div>
+</div>
+
+<div class="app-container" style="display: none;">
+    <header class="header">
+      <h1>⚖️ Legal Case Builder</h1>
+      <p>Joshua D. Shipman vs. GAINSCO Auto Insurance</p>
+    </header>
+    
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="case-builder">Case Builder</button>
+      <button class="nav-tab" data-tab="timeline">Email Timeline</button>
+      <button class="nav-tab" data-tab="research">Legal Research</button>
+      <button class="nav-tab" data-tab="analysis">Analysis &amp; Prep</button>
+      <button class="nav-tab" data-tab="meeting-prep">Meeting Prep</button>
+      <button class="nav-tab" data-tab="export">Export/Backup</button>
+    </nav>
+    
+    <main class="main-content">
+      <!-- Case Builder Tab -->
+      <div id="case-builder" class="tab-content active">
+        <div class="disclaimer">
+          <strong>⚠️ Disclaimer:</strong> This tool is for case organization and preparation purposes only. It does not constitute legal advice. Please consult with a qualified attorney regarding your specific legal matter.
+        </div>
+        
+        <div class="card">
+          <h2>Personal &amp; Employment Information</h2>
+          <div class="form-group">
+            <label class="form-label">Full Name</label>
+            <input type="text" class="form-input" id="field-name" value="Joshua D. Shipman">
+            <span class="saved-indicator" id="saved-name" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Employer Name</label>
+            <input type="text" class="form-input" id="field-employer" value="GAINSCO Auto Insurance">
+            <span class="saved-indicator" id="saved-employer" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Employment Dates</label>
+            <input type="text" class="form-input" id="field-dates" value="November 2, 2015 - September 18, 2025">
+            <span class="saved-indicator" id="saved-dates" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Job Title(s)</label>
+            <input type="text" class="form-input" id="field-title" value="Claims Manager I">
+            <span class="saved-indicator" id="saved-title" style="display:none;">✓ Saved</span>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Protected Class Status</h2>
+          <div class="form-group">
+            <label class="form-label">Age</label>
+            <input type="text" class="form-input" id="field-age" value="45">
+            <span class="saved-indicator" id="saved-age" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Sexual Orientation</label>
+            <input type="text" class="form-input" id="field-orientation" value="Gay">
+            <span class="saved-indicator" id="saved-orientation" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Disability Status &amp; Documentation</label>
+            <textarea class="form-textarea" id="field-disability">Autism (documented diagnosis), Anxiety/Panic Disorders (medical letter from Ayla Jenson Naughton, MSN, APRN, PMHNP-BC, University Park Counseling &amp; Testing Center, dated July 29, 2025)</textarea>
+            <span class="saved-indicator" id="saved-disability" style="display:none;">✓ Saved</span>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('disability-discrimination')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('disability')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-disability"></div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Performance History</h2>
+          <div class="form-group">
+            <label class="form-label">Describe your performance reviews and track record (2021-2023)</label>
+            <textarea class="form-textarea" id="field-performance">Excellent performance reviews from 2021-2023. Consistently met or exceeded expectations. No documented performance issues prior to filing complaint in August 2024.</textarea>
+            <span class="saved-indicator" id="saved-performance" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-performance">0 characters</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('performance-evidence')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('performance')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-performance"></div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Formal Complaint</h2>
+          <div class="form-group">
+            <label class="form-label">Date of Formal Complaint</label>
+            <input type="text" class="form-input" id="field-complaint-date" value="August 16, 2024 at 11:54 AM">
+            <span class="saved-indicator" id="saved-complaint-date" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Recipients of Complaint</label>
+            <textarea class="form-textarea" id="field-complaint-recipients">Stephanie Pathak (HR Partner)
+Sola Opeola (General Counsel)</textarea>
+            <span class="saved-indicator" id="saved-complaint-recipients" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Nature of Complaint (detailed description)</label>
+            <textarea class="form-textarea" id="field-complaint-nature">Filed formal complaint regarding discrimination based on age (45), sexual orientation (Gay), and hostile work environment. Documented pattern of harassment spanning 5+ years that escalated after my protected status became known.</textarea>
+            <span class="saved-indicator" id="saved-complaint-nature" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-complaint-nature">0 characters</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('hostile-environment')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('complaint-nature')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-complaint-nature"></div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Accommodation Requests (ADA)</h2>
+          <div class="form-group">
+            <label class="form-label">Date of Accommodation Request</label>
+            <input type="text" class="form-input" id="field-accommodation-date" value="July 1, 2025 (updated July 29, 2025)">
+            <span class="saved-indicator" id="saved-accommodation-date" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Medical Provider Information</label>
+            <textarea class="form-textarea" id="field-provider">Ayla Jenson Naughton, MSN, APRN, PMHNP-BC
+University Park Counseling &amp; Testing Center</textarea>
+            <span class="saved-indicator" id="saved-provider" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Accommodation Requested</label>
+            <textarea class="form-textarea" id="field-accommodation-requested">Flexible work location arrangement: ability to choose between working from home or office based on anxiety/panic symptoms related to autism diagnosis. This accommodation would allow me to manage symptoms while maintaining full productivity.</textarea>
+            <span class="saved-indicator" id="saved-accommodation-requested" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-accommodation-requested">0 characters</div>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Company's Response &amp; Interactive Process</label>
+            <textarea class="form-textarea" id="field-accommodation-response">Company delayed response and failed to engage in good faith interactive process. I submitted 3+ accommodation proposals, but received no formal accommodation before termination on September 17, 2025. Company violated ADA's requirement to engage in interactive process.</textarea>
+            <span class="saved-indicator" id="saved-accommodation-response" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-accommodation-response">0 characters</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('ada-interactive-process')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('accommodation-response')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-accommodation-response"></div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Adverse Actions Timeline</h2>
+          <div class="form-group">
+            <label class="form-label">List all adverse actions with dates (promotions denied, duties removed, exclusions, etc.)</label>
+            <textarea class="form-textarea" id="field-adverse-actions" style="min-height: 200px;">• September 26, 2024: Job title changed to "Manager I" with no corresponding duty increase or salary adjustment (41 days after complaint)
+• November 2024: Total Loss division removed from my responsibilities (scope reduction)
+• July 2025: Excluded from core meetings and strategic projects
+• August 2025: Excluded from vendor-facing meetings (career harm)
+• September 17, 2025: Terminated - stated reason "berating subordinate" (pretext for retaliation)
+
+Temporal Proximity: All adverse actions occurred within months of August 16, 2024 complaint and July 2025 accommodation request.</textarea>
+            <span class="saved-indicator" id="saved-adverse-actions" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-adverse-actions">0 characters</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('retaliation-temporal-proximity')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('adverse-actions')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-adverse-actions"></div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Comparator Evidence</h2>
+          <div class="form-group">
+            <label class="form-label">Identify similarly situated employees who were treated more favorably</label>
+            <textarea class="form-textarea" id="field-comparators" style="min-height: 160px;">• Franco Glaze (Black male): Previously my subordinate, promoted to Manager L2 after my termination
+• Kim Price (Black female): Previously Team Leader under me, promoted to Manager 1 (my former role)
+• Miles Lerman: Promoted to Director (4 levels above Manager 1)
+
+All three individuals received advancement opportunities that were systematically denied to me despite my superior tenure and performance history.</textarea>
+            <span class="saved-indicator" id="saved-comparators" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-comparators">0 characters</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('comparator-evidence')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('comparators')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-comparators"></div>
+          </div>
+        </div>
+        
+        <div class="card">
+          <h2>Termination Details</h2>
+          <div class="form-group">
+            <label class="form-label">Date of Termination</label>
+            <input type="text" class="form-input" id="field-termination-date" value="September 17, 2025">
+            <span class="saved-indicator" id="saved-termination-date" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Stated Reason for Termination</label>
+            <input type="text" class="form-input" id="field-termination-reason" value="Berating subordinate">
+            <span class="saved-indicator" id="saved-termination-reason" style="display:none;">✓ Saved</span>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Why the stated reason is pretextual (contradicts documentation, timing, etc.)</label>
+            <textarea class="form-textarea" id="field-termination-pretext">The stated reason contradicts my documented excellent performance history and is pretextual because:
+1. No prior written warnings for management style
+2. Termination occurred 13 months after complaint and 50 days after accommodation request
+3. Comparators with actual documented issues were promoted instead
+4. Company failed to follow progressive discipline procedures
+5. Timing and pattern of adverse actions demonstrates retaliation motive</textarea>
+            <span class="saved-indicator" id="saved-termination-pretext" style="display:none;">✓ Saved</span>
+            <div class="char-count" id="char-termination-pretext">0 characters</div>
+            <div class="btn-group">
+              <button class="btn btn-secondary btn-small" onclick="openResearch('pretext-wrongful-termination')">🔍 Legal Research</button>
+              <button class="btn btn-secondary btn-small" onclick="attachEvidence('termination-pretext')">📎 Attach Evidence</button>
+            </div>
+            <div id="evidence-termination-pretext"></div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Timeline Tab -->
+      <div id="timeline" class="tab-content">
+        <div class="card">
+          <h2>Chronological Timeline of Events</h2>
+          <p style="margin-bottom: var(--space-24); color: var(--color-text-secondary);">Key communications and events in chronological order</p>
+          
+          <div class="timeline" id="timeline-container">
+            <!-- Timeline items will be generated by JavaScript -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Legal Research Tab -->
+      <div id="research" class="tab-content">
+        <div class="card">
+          <h2>Legal Research Tool</h2>
+          <p style="margin-bottom: var(--space-24); color: var(--color-text-secondary);">Search for relevant case law, statutes, and legal precedents</p>
+          
+          <div class="search-box">
+            <input type="text" class="form-input search-input" id="research-query" placeholder="Enter search query (e.g., 'ADA retaliation temporal proximity Texas')">
+            <button class="btn btn-primary" onclick="performResearch()">🔍 Search</button>
+          </div>
+          
+          <div style="margin-bottom: var(--space-24);">
+            <strong>Quick Templates:</strong>
+            <div class="btn-group" style="flex-wrap: wrap;">
+              <button class="btn btn-secondary btn-small" onclick="quickSearch('ADA retaliation temporal proximity')">ADA Retaliation</button>
+              <button class="btn btn-secondary btn-small" onclick="quickSearch('disability discrimination failure to accommodate')">Failure to Accommodate</button>
+              <button class="btn btn-secondary btn-small" onclick="quickSearch('age discrimination ADEA Texas')">Age Discrimination</button>
+              <button class="btn btn-secondary btn-small" onclick="quickSearch('sexual orientation discrimination Title VII')">Sexual Orientation</button>
+              <button class="btn btn-secondary btn-small" onclick="quickSearch('pretext wrongful termination')">Pretext Evidence</button>
+              <button class="btn btn-secondary btn-small" onclick="quickSearch('hostile work environment pattern')">Hostile Environment</button>
+            </div>
+          </div>
+          
+          <div id="research-results">
+            <!-- Research results will be displayed here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Analysis Tab -->
+      <div id="analysis" class="tab-content">
+        <div class="card">
+          <h2>Case Analysis &amp; Consistency Check</h2>
+          <p style="margin-bottom: var(--space-24); color: var(--color-text-secondary);">Automated analysis of your case strength, consistency, and potential vulnerabilities</p>
+          
+          <button class="btn btn-primary" onclick="runAnalysis()" style="margin-bottom: var(--space-24);">▶️ Run Complete Analysis</button>
+          
+          <div id="analysis-results">
+            <!-- Analysis results will be displayed here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Meeting Prep Tab -->
+      <div id="meeting-prep" class="tab-content">
+        <div class="card">
+          <h2>Meeting &amp; Deposition Preparation</h2>
+          <p style="margin-bottom: var(--space-24); color: var(--color-text-secondary);">Anticipated hostile questions with model answers to help you prepare</p>
+          
+          <div id="prep-questions">
+            <!-- Prep questions will be generated here -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- Export Tab -->
+      <div id="export" class="tab-content">
+        <div class="card">
+          <h2>Export &amp; Backup</h2>
+          <p style="margin-bottom: var(--space-24); color: var(--color-text-secondary);">Download your case data in various formats or import previous backups</p>
+          
+          <div class="form-group">
+            <h3>Export Options</h3>
+            <div class="btn-group" style="flex-direction: column; align-items: stretch;">
+              <button class="btn btn-primary" onclick="exportJSON()">📥 Export as JSON (Complete Backup)</button>
+              <button class="btn btn-primary" onclick="exportCSV()">📊 Export as CSV (Spreadsheet)</button>
+              <button class="btn btn-primary" onclick="generateSummaryPDF()">📄 Generate Case Summary (Text)</button>
+              <button class="btn btn-primary" onclick="generatePrepDoc()">📋 Create Deposition Prep Document</button>
+            </div>
+          </div>
+          
+          <div class="form-group" style="margin-top: var(--space-32);">
+            <h3>Import Backup</h3>
+            <input type="file" id="import-file" accept=".json" style="display: none;" onchange="importJSON(event)">
+            <button class="btn btn-secondary" onclick="document.getElementById('import-file').click()">📤 Import JSON Backup</button>
+          </div>
+          
+          <div class="form-group" style="margin-top: var(--space-32);">
+            <h3>Data Management</h3>
+            <div class="btn-group" style="flex-direction: column; align-items: stretch;">
+              <button class="btn btn-secondary" onclick="forceBackup()">💾 Force Manual Backup Now</button>
+              <button class="btn btn-secondary" onclick="checkStorage()">📊 Check Storage Usage</button>
+              <button class="btn btn-secondary" onclick="clearAllData()" style="background-color: var(--color-error); color: white;">🗑️ Clear All Data (Danger)</button>
+            </div>
+          </div>
+          
+          <div id="export-status" style="margin-top: var(--space-24);"></div>
+        </div>
+      </div>
+    </main>
+    
+    <div class="last-saved" id="last-saved">
+      Last saved: Never
+    </div>
+  </div>
+  
+  <!-- Modal for Legal Research -->
+  <div id="research-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Legal Research</h2>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div id="modal-body">
+        <div class="search-box">
+          <input type="text" class="form-input search-input" id="modal-research-query" placeholder="Search for relevant law...">
+          <button class="btn btn-primary" onclick="modalSearch()">🔍 Search</button>
+        </div>
+        <div id="modal-results" style="margin-top: var(--space-24);"></div>
+      </div>
+    </div>
+  </div>
+  
+  <script type="module" src="app.js"></script>
+</body>
+</html>

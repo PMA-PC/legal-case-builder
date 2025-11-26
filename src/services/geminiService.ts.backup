@@ -1,0 +1,1156 @@
+import { GoogleGenAI, Type } from "@google/genai";
+import { AnalysisResults, Allegation } from '../types';
+
+
+// Helper to get AI instance
+const getAI = () => {
+  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
+  if (!apiKey) {
+    console.error("API Key is missing!");
+    throw new Error("API Key is missing");
+  }
+  return new GoogleGenAI({ apiKey });
+};
+
+export async function analyzeCase(complaintText: string, jobDescriptionText: string, actualDutiesText: string, characterProfileText: string, handbookUrl: string): Promise<AnalysisResults | null> {
+  try {
+    const ai = getAI();
+    const model = "gemini-2.0-flash-exp";
+
+    const prompt = `
+    As an expert AI legal strategist specializing in Texas employment law, you are acting as a **retained attorney investigating this case on behalf of your client**, a pro se individual. Your primary role is to conduct a deep, investigative analysis of their provided information. You must **think like an attorney preparing for litigation**: identify all potential claims, uncover strengths, and **proactively identify and address all weaknesses**. A critical part of your job is to find the gaps in your client's story and prompt them for the specific details needed to build an airtight case.
+
+    The user's arbitration agreement requires a "Good Faith Conference" before filing and follows AAA Employment Arbitration Rules. Your guidance must reflect this specific process.
+
+    **CASE NARRATIVE SUMMARY:**
+    The user, a 46-year-old gay man with an ADA-recognized disability (Autism), was a Claims Manager for eight years. He filed a formal written complaint on August 16, 2024, alleging a "culture of harassment," discrimination based on sexual orientation, age, and beliefs, unequal treatment, and a hostile work environment. This is a protected activity. Approximately one year later, on September 17, 2025, he was terminated. The company's stated reason was "berating a direct report," which the user believes is pretextual and retaliatory.
+
+    **YOUR CORE TASK:**
+    Based on the detailed texts the user has provided, you will generate a comprehensive legal analysis. **A key part of your analysis is to leverage the "Professional Profile & Character" information to build a compelling "model employee" narrative. You must use this narrative to directly challenge the company's stated reason for termination, arguing it is pretextual and inconsistent with their long-standing professional history.**
+
+    **CRITICAL STATED ALLEGATIONS TO CONFIRM:**
+    Ensure the following specific grievances, if present in the 'Your Complaint & Grievances' section, are explicitly recognized and included in your 'Stated Allegations' output:
+    - Unfair Treatment Related to Disability and Denial of Reasonable Accommodation (Referencing the ADA and state laws, if applicable, to include my medical issues being 'pushed down' and mishandled).
+    - Unfair Distribution of Workloads (including unfair allocation of work compared to peers, headcount, process management, and type of employees/new leaders).
+    - **Discriminatory Pay (based on Unfair Pay Practices)**: Ensure this is included as a 'Stated Allegation' with a summary reflecting that the user was paid unfairly based on the work requested and level of work being completed not at "Manager 1" level, along with relevant Texas case law examples that specifically address pay discrimination based on work requested and level of work completed, especially in comparison to a 'Manager 1' level.
+    - Unfair Disciplinary Action based on discussions with leadership and that no warning was being given or needed to be documented.
+    - Hostile Work Environment (specifically being advised that I was no longer part of the "leadership team" prior to this incident twice by Sr. Claims Leadership).
+    - Favoritism in the Workplace (resulting in unfair shifts and hardships placed on me and my group compared to others).
+    - Unfair Practices of Documentation and Performance Reviews between VP levels.
+    - Unfair Metrics and Objectives, including those that appear mathematically impossible.
+
+    Your output must be a single JSON object that includes:
+
+    1.  **Stated Allegations:** Identify all claims explicitly made by the user. For each, include relevant Texas case law.
+    2.  **Unstated Claims:** Identify potential claims the user has *not* stated, with justification and relevant Texas case law.
+    3.  **Information Gaps to Address:** Critical questions to prompt the user for more information where their narrative has weaknesses.
+    4.  **Anticipated Investigator Questions:** Pointed questions a company investigator or opposing counsel is likely to ask.
+    5.  **Quantitative Data Prompts:** Targeted questions for quantitative data to support claims of unfair workload.
+    6.  **Strategic Witness Questions (Culture Shift):** Questions to establish the negative culture change.
+    7.  **Strategic Witness Questions (Culture Portrait):** Questions to expose systemic leadership and communication issues.
+    8.  **Strategic Witness Questions (ADA Accommodations):** Generate deeply probing, deposition-style questions designed to scrutinize the employer's adherence to the ADA's interactive process, especially concerning non-visible disabilities like autism. The questions must specifically probe for: a) evidence of manager training (or lack thereof) on their legal duties to accommodate, b) the step-by-step process the company followed after the disability was disclosed, and c) any potential disparate treatment when compared to accommodation requests from other employees.
+    9.  **Handbook Policy Violation Analysis:** Meticulously analyze the provided employee handbook URL. Cross-reference its contents against the user's narrative. For each violation, you must output: a) the exact policy name (e.g., "Progressive Discipline Policy"), b) the specific handbook section number, c) a clear summary of how the company's actions violated this policy, and d) the primary legal allegation this violation supports.
+    10. **Good Faith Conference & Discovery Preparation Guide:** Generate a guide based on the user's AAA Arbitration process. This includes the purpose, key topics, a detailed document request list with rationale, and three distinct, ready-to-use communication templates (initial email, follow-up email, formal letter).
+    11. **Comprehensive Response Strategies:** For each primary allegation, provide a detailed strategy, evidence list, action steps, and anticipated employer counter-arguments.
+
+    **USER-PROVIDED INFORMATION:**
+    ---
+    Your Complaint & Grievances:
+    ${complaintText}
+    ---
+    Your Official 'Manager 1' Job Description:
+    ${jobDescriptionText}
+    ---
+    Your Actual Duties Performed:
+    ${actualDutiesText}
+    ---
+    Your Professional Profile & Character:
+    ${characterProfileText}
+    ---
+    Employee Handbook URL:
+    ${handbookUrl}
+    ---
+  `;
+
+    try {
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          // thinkingConfig: { thinkingBudget: 32768 },
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              statedAllegations: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    claim: { type: Type.STRING },
+                    summary: { type: Type.STRING },
+                    evidenceMentioned: { type: Type.ARRAY, items: { type: Type.STRING } },
+                    texasCaseExamples: {
+                      type: Type.ARRAY,
+                      items: {
+                        type: Type.OBJECT,
+                        properties: {
+                          caseName: { type: Type.STRING },
+                          primaryComplaint: { type: Type.STRING },
+                          outcome: { type: Type.STRING },
+                          relevance: { type: Type.STRING }
+                        },
+                        required: ["caseName", "primaryComplaint", "outcome", "relevance"]
+                      }
+                    }
+                  },
+                  required: ["claim", "summary", "evidenceMentioned", "texasCaseExamples"]
+                }
+              },
+              unstatedClaims: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    claim: { type: Type.STRING },
+                    justification: { type: Type.STRING },
+                    texasCaseExamples: {
+                      type: Type.ARRAY,
+                      items: {
+                        type: Type.OBJECT,
+                        properties: {
+                          caseName: { type: Type.STRING },
+                          primaryComplaint: { type: Type.STRING },
+                          outcome: { type: Type.STRING },
+                          relevance: { type: Type.STRING }
+                        },
+                        required: ["caseName", "primaryComplaint", "outcome", "relevance"]
+                      }
+                    }
+                  },
+                  required: ["claim", "justification", "texasCaseExamples"]
+                }
+              },
+              informationGaps: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    area: { type: Type.STRING },
+                    question: { type: Type.STRING },
+                    rationale: { type: Type.STRING }
+                  },
+                  required: ["area", "question", "rationale"]
+                }
+              },
+              investigatorQuestions: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    question: { type: Type.STRING },
+                    purpose: { type: Type.STRING }
+                  },
+                  required: ["question", "purpose"]
+                }
+              },
+              quantitativeDataPrompts: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    prompt: { type: Type.STRING },
+                    rationale: { type: Type.STRING }
+                  },
+                  required: ["prompt", "rationale"]
+                }
+              },
+              cultureShiftQuestions: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    question: { type: Type.STRING },
+                    objective: { type: Type.STRING }
+                  },
+                  required: ["question", "objective"]
+                }
+              },
+              culturePortraitQuestions: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    primaryQuestion: { type: Type.STRING },
+                    objective: { type: Type.STRING },
+                    followUps: {
+                      type: Type.ARRAY,
+                      items: {
+                        type: Type.OBJECT,
+                        properties: {
+                          ifResponseIs: { type: Type.STRING },
+                          followUpQuestion: { type: Type.STRING }
+                        },
+                        required: ["ifResponseIs", "followUpQuestion"]
+                      }
+                    }
+                  },
+                  required: ["primaryQuestion", "objective", "followUps"]
+                }
+              },
+              adaAccommodationQuestions: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    question: { type: Type.STRING },
+                    objective: { type: Type.STRING },
+                    focus: {
+                      type: Type.STRING,
+                      enum: ['Process', "Your Case", 'Disparate Treatment', 'Legal Knowledge']
+                    }
+                  },
+                  required: ["question", "objective", "focus"]
+                }
+              },
+              handbookPolicyViolations: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    policyName: { type: Type.STRING },
+                    handbookSection: { type: Type.STRING },
+                    violationSummary: { type: Type.STRING },
+                    relatedAllegation: { type: Type.STRING }
+                  },
+                  required: ["policyName", "handbookSection", "violationSummary", "relatedAllegation"]
+                }
+              },
+              goodFaithConferenceGuide: {
+                type: Type.OBJECT,
+                properties: {
+                  introduction: { type: Type.STRING, description: "An explanation of the Good Faith Conference and AAA discovery process." },
+                  keyTopics: { type: Type.ARRAY, items: { type: Type.STRING }, description: "A list of key topics to discuss." },
+                  documentRequests: {
+                    type: Type.ARRAY,
+                    items: {
+                      type: Type.OBJECT,
+                      properties: {
+                        category: { type: Type.STRING, description: "The category of the document request." },
+                        item: { type: Type.STRING, description: "The specific document or item being requested." },
+                        rationale: { type: Type.STRING, description: "The reason why this document is relevant and necessary." }
+                      },
+                      required: ["category", "item", "rationale"]
+                    }
+                  },
+                  draftCommunications: {
+                    type: Type.ARRAY,
+                    items: {
+                      type: Type.OBJECT,
+                      properties: {
+                        type: { type: Type.STRING, enum: ['Email', 'Letter'], description: "The type of communication." },
+                        purpose: { type: Type.STRING, description: "The strategic purpose of this communication." },
+                        subject: { type: Type.STRING, description: "The subject line for the email or letter." },
+                        body: { type: Type.STRING, description: "The full, pre-drafted body of the communication." }
+                      },
+                      required: ["type", "purpose", "subject", "body"]
+                    }
+                  }
+                },
+                required: ["introduction", "keyTopics", "documentRequests", "draftCommunications"]
+              },
+              responseStrategies: {
+                type: Type.ARRAY,
+                items: {
+                  type: Type.OBJECT,
+                  properties: {
+                    claim: { type: Type.STRING },
+                    strategy: { type: Type.STRING },
+                    evidenceToGather: {
+                      type: Type.ARRAY,
+                      items: {
+                        type: Type.OBJECT,
+                        properties: {
+                          item: { type: Type.STRING },
+                          potentialSource: { type: Type.STRING },
+                          rationale: { type: Type.STRING }
+                        },
+                        required: ["item", "potentialSource", "rationale"]
+                      }
+                    },
+                    suggestedActionSteps: {
+                      type: Type.ARRAY,
+                      items: { type: Type.STRING }
+                    },
+                    potentialCounterArguments: {
+                      type: Type.ARRAY,
+                      items: { type: Type.STRING }
+                    }
+                  },
+                  required: ["claim", "strategy", "evidenceToGather", "suggestedActionSteps", "potentialCounterArguments"]
+                }
+              }
+            },
+            required: ["statedAllegations", "unstatedClaims", "informationGaps", "investigatorQuestions", "quantitativeDataPrompts", "cultureShiftQuestions", "culturePortraitQuestions", "adaAccommodationQuestions", "handbookPolicyViolations", "goodFaithConferenceGuide", "responseStrategies"]
+          }
+        }
+      });
+
+      const jsonText = response.text.trim();
+      return JSON.parse(jsonText) as AnalysisResults;
+
+    } catch (error) {
+      console.error("Error analyzing case with Gemini API:", error);
+      return null;
+    }
+  }
+
+export async function getImprovementSuggestions(
+    sectionTitle: string,
+    sectionContent: string,
+    originalComplaint: string
+  ): Promise<string | null> {
+    try {
+      const ai = getAI();
+      const model = "gemini-2.0-flash-exp";
+      const prompt = `
+    You are an AI legal strategist with expertise in Texas employment law, acting as an advisor for a pro se individual.
+    You are reviewing a section of a case analysis they have generated for their own wrongful termination case.
+
+    Here is the original complaint from the user:
+    ---
+    ${originalComplaint}
+    ---
+
+    Here is the section of the analysis you need to review, titled "${sectionTitle}":
+    ---
+    ${sectionContent}
+    ---
+
+    Your task is to provide constructive feedback on this section. Your feedback should be actionable and aimed at strengthening the user's pro se case. Consider the following:
+    - What is missing from this analysis? Are there overlooked details in the original complaint?
+    - How can the existing points be framed more powerfully from a legal perspective under Texas law?
+    - Are there alternative interpretations or legal angles that should be explored?
+    - What potential weaknesses or counter-arguments should be anticipated?
+
+    Provide your feedback as a concise, well-structured list of bullet points. Focus on high-impact suggestions.
+  `;
+
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+      });
+      return response.text;
+    } catch (error) {
+      console.error("Error getting improvement suggestions from Gemini API:", error);
+      return null;
+    }
+  }
+
+  export async function analyzeFileForRelevance(fileContent: string, allegations: Allegation[]): Promise<{ isRelevant: boolean; relevanceType: 'specific' | 'proactive'; specificAllegation?: string; proactiveCategory?: string; justification: string; category: string; } | null> {
+    try {
+      const ai = getAI();
+      const model = "gemini-2.0-flash-exp";
+      const allegationText = allegations.map(a => `- ${a.claim}: ${a.summary}`).join('\n');
+
+      const prompt = `
+        You are an AI case assistant reviewing a document for a pro se wrongful termination case in Texas.
+        The potential claims are:
+        ${allegationText}
+
+        Here is the content of the document:
+        ---
+        ${fileContent.substring(0, 30000)}
+        ---
+
+        Follow these steps to analyze the document and provide a single JSON response:
+        1.  **Analyze for Specific Relevance:** Does the document contain direct evidence supporting one of the specific allegations listed above? If yes, proceed to step 3. If no, proceed to step 2.
+        2.  **Analyze for Proactive Relevance:** If the document is not direct evidence, is it still useful for the case? For example, does it show company culture, establish a timeline, illustrate a policy, or provide general context? If yes, proceed to step 4. If no, the document is not relevant; proceed to step 5.
+        3.  **Construct 'Specific' Response:** The document is direct evidence. Set "isRelevant" to true, "relevanceType" to "specific", and "specificAllegation" to the single most relevant allegation claim. Omit "proactiveCategory".
+        4.  **Construct 'Proactive' Response:** The document is contextually useful. Set "isRelevant" to true, "relevanceType" to "proactive", and "proactiveCategory" to the single most fitting category from this exact list: ['Establishes Performance Timeline', 'Shows Company Communication Style', 'Illustrates Company Policy', 'Provides General Context']. Omit "specificAllegation".
+        5.  **Construct 'Not Relevant' Response:** The document is not relevant. Set "isRelevant" to false and other fields appropriately.
+
+        Finally, for all relevant documents, provide a "justification" explaining *why* it's relevant and a "category" (e.g., "Email Communication", "Performance Review", "HR Document").
+    `;
+
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+            type: Type.OBJECT,
+            properties: {
+              isRelevant: { type: Type.BOOLEAN, description: "Is the document relevant in any capacity?" },
+              relevanceType: { type: Type.STRING, enum: ['specific', 'proactive', 'none'], description: "The type of relevance. Use 'none' if not relevant." },
+              specificAllegation: { type: Type.STRING, description: "If relevance is 'specific', the allegation claim it supports." },
+              proactiveCategory: {
+                type: Type.STRING,
+                description: "If 'proactive', the most fitting category from the predefined list.",
+                enum: ['Establishes Performance Timeline', 'Shows Company Communication Style', 'Illustrates Company Policy', 'Provides General Context']
+              },
+              justification: { type: Type.STRING, description: "A comprehensive explanation of why the document is relevant, or why not." },
+              category: { type: Type.STRING, description: "The category of the document." }
+            },
+            required: ["isRelevant", "relevanceType", "justification", "category"]
+          }
+        }
+      });
+
+      const jsonText = response.text.trim();
+      const parsed = JSON.parse(jsonText);
+      // Ensure relevanceType is correctly typed for the application
+      if (parsed.relevanceType === 'none') {
+        parsed.relevanceType = 'proactive'; // Default to proactive for typing, but isRelevant will be false.
+      }
+      return parsed;
+
+    } catch (error) {
+      console.error("Error analyzing file with Gemini API:", error);
+      return null;
+    }
+  }
+
+  export async function generateLegalLetter(
+    analysis: AnalysisResults,
+    complaintText: string,
+    jobDescriptionText: string,
+    actualDutiesText: string,
+    characterProfileText: string,
+    handbookUrl: string,
+    tone: 'demand' | 'settlement'
+  ): Promise<string | null> {
+    try {
+      const ai = getAI();
+      const model = "gemini-2.0-flash-exp";
+      const analysisText = JSON.stringify(analysis, null, 2);
+
+      const footer = `
+-------------------------------------------------------------
+CONFIDENTIALITY NOTICE: This communication and any attachments are intended solely for the use of the individual or entity to whom it is addressed and may contain information that is privileged, confidential, and exempt from disclosure under applicable law. If you are not the intended recipient, you are hereby notified that any dissemination, distribution, or copying of this communication is strictly prohibited. If you have received this communication in error, please notify the sender immediately and delete the original message.  
+
+This correspondence is prepared for settlement purposes only and is inadmissible under Federal Rule of Evidence 408 and applicable Texas law.
+-------------------------------------------------------------`;
+
+      const promptBase = `
+**CRITICAL INSTRUCTIONS:**
+1.  **Model Employee Narrative:** You MUST weave the "Professional Profile & Character" information throughout the letter to paint a picture of a dedicated, high-performing employee. Contrast this strong history with the company's stated reason for termination to powerfully argue that it is pretextual and unbelievable.
+2.  **Handbook Violations:** You MUST reference specific policies from the employee handbook (if provided and relevant) to strengthen the arguments and show that the company violated its own procedures.
+
+**CASE DETAILS:**
+Your Original Complaint:
+---
+${complaintText}
+---
+Your Official Job Description:
+---
+${jobDescriptionText}
+---
+Your Actual Duties Performed:
+---
+${actualDutiesText}
+---
+Your Professional Profile & Character:
+---
+${characterProfileText}
+---
+Employee Handbook URL: ${handbookUrl}
+---
+AI Case Analysis Results:
+---
+${analysisText}
+---
+`;
+
+      const demandPrompt = `
+You are an AI assistant helping a pro se individual (someone representing themselves) draft a formal complaint and demand letter for a wrongful termination case in Texas. The writing must be strong, confident, and professional, suitable for a self-representing person to send directly to their former employer. It should not read as if it was written by a lawyer, but by an informed individual.
+
+Draft a formal letter based on the provided case analysis.
+The audience for this letter includes the company's legal representatives, HR departments, and insurance adjusters.
+The letter must follow this exact pro se format and include all sections:
+
+[Your Name]
+[Your Street Address]
+[Your City, State ZIP]
+[Your Phone Number] | [Your Email Address]
+
+[Date]
+
+VIA [Email / Certified Mail / Delivery Service]
+[Employer / Company Name]
+[Recipient Name, Title] (e.g., HR Director, General Counsel)
+[Company Address]
+
+RE: Formal Complaint of [Your Name] – Wrongful Termination, Retaliation, and Discrimination
+-------------------------------------------------------------
+
+1.  **Introduction:** State the purpose of the letter (to formally complain about my wrongful termination and related issues, and to demand a resolution).
+2.  **Statement of Facts:** Provide a chronological, fact-based summary of my employment, my protected activities (like complaining about harassment or requesting accommodation), and my termination. Write from a first-person perspective ("I").
+3.  **Legal Basis:** Identify specific violations under applicable Texas and federal law (e.g., Title VII, ADA, ADEA, TCHRA, Sabine Pilot doctrine). Explain how the facts of my situation support these claims.
+4.  **Damages:** Detail the damages I have suffered, including lost wages, lost benefits, emotional distress, and potential punitive or liquidated damages.
+5.  **Demand for Resolution:** State a clear settlement demand or a specific monetary range. Indicate my readiness to pursue all available legal remedies, including filing with the EEOC/TWC and litigation, if a fair resolution is not reached.
+6.  **Closing Statement:** Maintain a professional closing and include the required legal disclaimer from the footer.
+
+${promptBase}
+
+**INSTRUCTIONS:**
+- Use a strong, confident, and professional tone from a first-person ("I") perspective.
+- Keep the draft between 750–1,500 words.
+- Use placeholders like [Employer Name], [Termination Date] where specific details are not provided in the analysis. Do not use placeholders for your own name; it should be written as if you are the author.
+- Write in the active voice and avoid hyperbole.
+- Summarize legal reasoning; do not quote large blocks of case text.
+- Maintain professional formatting with clear headings and spacing.
+- The letter must end with the following footer, exactly as written:
+${footer}
+`;
+
+      const settlementPrompt = `
+You are an AI assistant helping a pro se individual (someone representing themselves) draft a pre-litigation settlement proposal for a wrongful termination case in Texas. The writing must be courteous, solution-oriented, and professional, suitable for a self-representing person to send directly to their former employer. It should not read as if it was written by a lawyer, but by an informed individual.
+
+Draft a settlement proposal based on the provided case analysis.
+The goal is to open a productive dialogue and resolve the matter amicably before litigation.
+The letter must follow this exact pro se format and include all sections:
+
+[Your Name]
+[Your Street Address]
+[Your City, State ZIP]
+[Your Phone Number] | [Your Email Address]
+
+[Date]
+
+VIA [Email / Certified Mail / Delivery Service]
+[Employer / Company Name]
+[Recipient Name, Title]
+[Company Address]
+
+RE: Pre-Litigation Settlement Proposal Regarding Employment of [Your Name]
+-------------------------------------------------------------
+
+1.  **Introduction:** State my intent to open a pre-litigation dialogue to resolve the matter of my employment separation amicably.
+2.  **Background Summary:** Provide a concise, factual overview of my employment history, any protected activities I engaged in, and my separation from the company. Write from a first-person ("I") perspective.
+3.  **Legal Overview:** Briefly and professionally outline the potential legal claims under Texas and federal law (e.g., Title VII, ADA, FMLA, ADEA, TCHRA) without being overly aggressive.
+4.  **Settlement Discussion / Damages Summary:** Frame the discussion around mutual benefit. Summarize the categories of damages I have incurred (lost wages, benefits, emotional distress) and invite the employer to engage in a fair and reasonable settlement discussion.
+5.  **Good Faith Invitation to Resolve:** Express a clear desire to resolve the matter confidentially and efficiently, avoiding the costs and burdens of formal legal proceedings for both parties.
+6.  **Closing Statement:** Maintain a professional closing and include the required legal disclaimer from the footer.
+
+${promptBase}
+
+**INSTRUCTIONS:**
+- Use a courteous, solution-oriented tone. Emphasize cooperation.
+- Keep the draft between 600–1,200 words.
+- Use placeholders like [Employer Name] where specific details are not provided.
+- Focus on facts and the desire for a fair resolution.
+- The letter must end with the following footer, exactly as written:
+${footer}
+`;
+
+      const prompt = tone === 'demand' ? demandPrompt : settlementPrompt;
+
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+      });
+      return response.text;
+
+    } catch (error) {
+      console.error("Error generating legal letter with Gemini API:", error);
+      return null;
+    }
+  }
+
+  // ===== NEW FUNCTIONS FOR LEGAL QUESTIONS INTEGRATION =====
+
+  export interface QuestionAnalysisResult {
+    confidence_score: number;
+    analysis: string;
+    missing_evidence?: string;
+    follow_up_questions?: string[];
+    relevant_case_law?: CaseLawExample[];
+  }
+
+  export interface CaseLawExample {
+    case_name: string;
+    jurisdiction: string;
+    claim_type: string;
+    outcome: string;
+    relevance_score: number; // 0-100, must be 85+ to be included
+    key_facts: string;
+    legal_holding: string;
+    why_relevant: string;
+    settlement_amount?: string;
+  }
+
+  export async function analyzeAnswerConfidence(
+    question: string,
+    answer: string,
+    allQuestionsContext?: string
+  ): Promise<QuestionAnalysisResult | null> {
+    try {
+      const ai = getAI();
+      const model = "gemini-2.0-flash-exp";
+
+      // Stage 1: Understand the complaint and generate follow-ups
+      const stage1Prompt = `
+    You are a Texas employment law expert analyzing a wrongful termination case.
+    
+    CASE CONTEXT (if available): ${allQuestionsContext || 'Limited context - analyze based on this Q&A alone'}
+
+      Question: "${question}"
+      Answer: "${answer}"
+    
+    STAGE 1: COMPLAINT ANALYSIS
+      First, identify the major legal complaints/claims this Q&A relates to. Consider:
+      - Wrongful Termination (Sabine Pilot, etc.)
+      - Discrimination (Title VII, TCHRA - Race, Sex, Age, Disability, etc.)
+      - Retaliation
+      - Hostile Work Environment
+      - Wage & Hour (FLSA)
+      - FMLA Interference/Retaliation
+
+      Then, assess the "Confidence Score" (0-100) of the user's answer. 
+      - High confidence means the answer is detailed, specific, and legally significant.
+      - Low confidence means the answer is vague, irrelevant, or misses the point.
+
+      Finally, generate 3-5 "Follow-Up Questions" to dig deeper into the specific claims identified.
+
+      Output JSON for Stage 1:
+      {
+        "confidence_score": number,
+        "analysis": "Brief summary of the legal implications of this answer.",
+        "missing_evidence": "What specific details are missing?",
+        "follow_up_questions": ["Q1", "Q2", "Q3"]
+      }
+    `;
+
+      const result1 = await ai.models.generateContent({
+        model: model,
+        contents: stage1Prompt,
+      - settlement_amount(string, optional): If applicable
+
+      CRITICAL: If you find 3 + cases all scoring 85 % + for the same claim, include ALL of them.
+        Quality over quantity, but don't limit artificially if multiple strong cases exist.
+        `;
+
+        const stage2Response = await ai.models.generateContent({
+          model: model,
+          contents: stage2Prompt,
+          config: {
+            responseMimeType: "application/json",
+          }
+        });
+
+        const caseLaw = JSON.parse(stage2Response.text.trim()) as CaseLawExample[];
+
+        // Filter to ensure only 85%+ cases are included
+        const filteredCaseLaw = caseLaw.filter(c => c.relevance_score >= 85);
+
+        return {
+          confidence_score: stage1Result.confidence_score,
+          analysis: stage1Result.analysis,
+          missing_evidence: stage1Result.missing_evidence,
+          follow_up_questions: stage1Result.follow_up_questions,
+          relevant_case_law: filteredCaseLaw
+        };
+      }
+
+      // If no claims identified, return stage 1 results only
+      return {
+        confidence_score: stage1Result.confidence_score,
+        analysis: stage1Result.analysis,
+        missing_evidence: stage1Result.missing_evidence,
+        follow_up_questions: stage1Result.follow_up_questions
+      };
+
+    } catch (error) {
+      console.error("Error analyzing answer confidence:", error);
+      return null;
+    }
+  }
+
+  export async function generateFollowUpQuestions(
+    question: string,
+    answer: string,
+    caseContext: string
+  ): Promise<string[] | null> {
+    const model = "gemini-1.5-flash";
+    const prompt = `
+    You are a legal strategist for a wrongful termination case.
+    
+    Original Question: "${question}"
+    Current Answer: "${answer}"
+    Case Context: ${ caseContext }
+    
+    Generate 3 - 5 targeted follow - up questions that would strengthen this answer for litigation.
+    Focus on:
+        - Specific dates, times, witnesses
+          - Documentary evidence(emails, reviews, etc.)
+            - Quantifiable impacts
+              - Comparisons to other employees
+    
+    Return JSON array of strings.
+  `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      return JSON.parse(text) as string[];
+    } catch (error) {
+      console.error("Error generating follow-up questions:", error);
+      return null;
+    }
+  }
+
+  export async function suggestDiscoveryRequests(
+    question: string,
+    answer: string
+  ): Promise<{ document: string; justification: string }[] | null> {
+    const model = "gemini-1.5-flash";
+    const prompt = `
+    For this legal Q & A, identify specific documents to request from the employer during discovery.
+
+        Question: "${question}"
+      Answer: "${answer}"
+    
+    Return JSON array of objects with:
+      - document(string): Specific document to request(e.g., "Performance reviews 2020-2025 for Joshua Shipman")
+        - justification(string): Legal reason this is discoverable and relevant
+    
+    Focus on documents the EMPLOYER has, not the employee.
+  `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      return JSON.parse(text) as { document: string; justification: string }[];
+    } catch (error) {
+      console.error("Error suggesting discovery requests:", error);
+      return null;
+    }
+  }
+
+  export interface SettlementEstimate {
+    conservative: number;
+    moderate: number;
+    aggressive: number;
+    breakdown: {
+      backPay: number;
+      frontPay: number;
+      compensatory: number;
+      punitive: number;
+    };
+    confidence: string;
+  }
+
+  export async function calculateSettlementValue(
+    allAnswers: Record<number, string>,
+    confidenceRatings: Record<number, number>
+  ): Promise<SettlementEstimate | null> {
+    const model = "gemini-1.5-flash";
+
+    const avgConfidence = Object.values(confidenceRatings).reduce((a, b) => a + b, 0) / Object.values(confidenceRatings).length;
+    const answersText = Object.entries(allAnswers).slice(0, 20).map(([id, ans]) => `Q${ id }: ${ ans.substring(0, 200) } `).join('\n');
+
+    const prompt = `
+    Estimate settlement value for wrongful termination case (Texas).
+    
+    Average Answer Confidence: ${ avgConfidence }%
+        Sample Answers: ${ answersText }
+
+      Consider:
+      - Retaliation claim(13 months temporal proximity)
+        - ADA disability discrimination(Autism)
+          - 8 - year employment history
+            - Manager - level position(~$120K salary)
+    
+    Return JSON with:
+      - conservative(number): Low - end settlement estimate
+        - moderate(number): Mid - range estimate
+          - aggressive(number): High - end estimate
+            - breakdown: { backPay, frontPay, compensatory, punitive }
+      - confidence(string): "High", "Medium", or "Low"
+        `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      return JSON.parse(text) as SettlementEstimate;
+    } catch (error) {
+      console.error("Error calculating settlement value:", error);
+      return null;
+    }
+  }
+
+  export async function generateExampleAnswer(
+    question: string,
+    caseContext: string
+  ): Promise<string | null> {
+    const model = "gemini-1.5-flash";
+    const prompt = `
+    Generate an example answer for this legal question based on the case context.
+
+        Question: "${question}"
+    Case Context: ${ caseContext }
+    
+    Write a strong, litigation - ready answer that:
+      - Includes specific dates, names, and facts
+        - References documentary evidence
+          - Addresses legal standards
+            - Is written in first person
+    
+    Return only the answer text(not JSON).
+  `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+      });
+      return response.text;
+    } catch (error) {
+      console.error("Error generating example answer:", error);
+      return null;
+    }
+  }
+
+  // ===== ADVANCED MODULES AI SERVICES =====
+
+  import { ArbitrationAnalysis, Timeline, TimelineEvent, DamagesBreakdown, ComparatorAnalysis, Comparator, PretextAnalysis } from '../types';
+
+  export async function analyzeArbitrationAgreement(
+    agreementText: string,
+    signedDate: string,
+    protectedActivityDate: string
+  ): Promise<ArbitrationAnalysis | null> {
+    const model = "gemini-2.0-flash-exp";
+    const prompt = `
+    You are a Texas employment law expert specializing in arbitration challenges.
+    
+    Analyze this arbitration agreement for enforceability issues and determine if the retaliation claim can be litigated outside arbitration.
+    
+    ARBITRATION AGREEMENT:
+    ${ agreementText }
+    
+    SIGNED DATE: ${ signedDate }
+    PROTECTED ACTIVITY DATE: ${ protectedActivityDate }
+    
+    Analyze for:
+        1. Procedural unconscionability(adhesion contract, lack of bargaining power, surprise, oppression)
+      2. Substantive unconscionability(one - sided terms, cost - prohibitive, lack of mutuality)
+      3. Whether retaliation claim predates agreement or falls outside scope
+      4. Texas - specific unconscionability standards
+      5. Settlement leverage points
+    
+    Return JSON with:
+      {
+        "unconscionabilityScore": number(0 - 100, higher = more unconscionable),
+          "proceduralIssues": string[],
+            "substantiveIssues": string[],
+              "carveOutViable": boolean,
+                "carveOutRationale": string,
+                  "motionTemplate": string(draft motion to compel litigation),
+                    "legalArguments": string[],
+                      "settlementLeveragePoints": string[]
+      }
+      `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      const result = JSON.parse(text);
+      return {
+        agreementText,
+        signedDate,
+        ...result
+      };
+    } catch (error) {
+      console.error("Error analyzing arbitration agreement:", error);
+      return null;
+    }
+  }
+
+  export async function analyzeTemporalProximity(
+    events: TimelineEvent[]
+  ): Promise<Timeline | null> {
+    const model = "gemini-2.0-flash-exp";
+
+    // Sort events by date
+    const sortedEvents = [...events].sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+
+    // Find protected activity and termination
+    const protectedActivity = sortedEvents.find(e => e.type === 'protected_activity');
+    const termination = sortedEvents.find(e => e.type === 'adverse_action' && e.description.toLowerCase().includes('termin'));
+
+    if (!protectedActivity || !termination) {
+      console.error("Must have at least one protected activity and one termination event");
+      return null;
+    }
+
+    const prompt = `
+    You are a Texas employment law expert analyzing temporal proximity and causation for a retaliation claim.
+    
+    TIMELINE EVENTS:
+    ${ sortedEvents.map(e => `${e.date} - ${e.type}: ${e.description}${e.significance ? ' (Significance: ' + e.significance + ')' : ''}`).join('\n') }
+    
+    PROTECTED ACTIVITY: ${ protectedActivity.date } - ${ protectedActivity.description }
+      TERMINATION: ${ termination.date } - ${ termination.description }
+
+      Analyze:
+      1. Calculate days between protected activity and termination
+      2. Assess causal connection strength(strong / moderate / weak)
+      3. Apply McDonnell Douglas burden - shifting framework
+      4. Identify intervening events that support or weaken causation
+      5. Generate narrative explaining the timeline
+    
+    Return JSON with:
+      {
+        "temporalProximityDays": number,
+          "causalConnectionStrength": "strong" | "moderate" | "weak",
+            "narrative": string,
+              "mcDonnellDouglasAnalysis": {
+          "protectedActivity": boolean,
+            "protectedActivityDescription": string,
+              "adverseAction": boolean,
+                "adverseActionDescription": string,
+                  "causalConnection": boolean,
+                    "causalConnectionRationale": string
+        },
+        "interveningEvents": string[]
+      }
+      `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      const result = JSON.parse(text);
+      return {
+        events: sortedEvents,
+        protectedActivityDate: protectedActivity.date,
+        terminationDate: termination.date,
+        ...result
+      };
+    } catch (error) {
+      console.error("Error analyzing temporal proximity:", error);
+      return null;
+    }
+  }
+
+  export async function calculateDamages(inputData: {
+    salary: number;
+    terminationDate: string;
+    newJobSalary: number;
+    newJobStartDate: string;
+    healthInsurance: number;
+    retirement401k: number;
+    paidTimeOff: number;
+    otherBenefits: number;
+    jobSearchExpenses: number;
+    emotionalDistress: number;
+    emotionalDistressJustification: string;
+    reputationalHarm: number;
+    reputationalHarmJustification: string;
+  }): Promise<DamagesBreakdown | null> {
+    const model = "gemini-2.0-flash-exp";
+    const currentDate = new Date().toISOString().split('T')[0];
+
+    const prompt = `
+    You are a Texas employment law expert calculating damages for a wrongful termination case.
+    
+    INPUT DATA:
+      - Annual Salary: $${ inputData.salary }
+      - Termination Date: ${ inputData.terminationDate }
+      - Current Date: ${ currentDate }
+      - New Job Salary: $${ inputData.newJobSalary } (started ${ inputData.newJobStartDate || 'not yet' })
+      - Lost Benefits(Annual):
+      - Health Insurance: $${ inputData.healthInsurance }
+      - 401(k) Match: $${ inputData.retirement401k }
+      - PTO: $${ inputData.paidTimeOff }
+      - Other: $${ inputData.otherBenefits }
+      - Job Search Expenses: $${ inputData.jobSearchExpenses }
+      - Emotional Distress: $${ inputData.emotionalDistress } (${ inputData.emotionalDistressJustification })
+      - Reputational Harm: $${ inputData.reputationalHarm } (${ inputData.reputationalHarmJustification })
+
+      Calculate:
+      1. Back pay(termination to current, minus mitigation from new job)
+      2. Front pay(2 - 3 years of future lost earnings)
+      3. Lost benefits(prorated based on employment gap)
+      4. Punitive damages eligibility(malice / reckless indifference)
+      5. Texas punitive damages cap(2x economic + non - economic, or $750k / $200k)
+      6. Settlement ranges(conservative, moderate, aggressive)
+    
+    Return JSON with complete DamagesBreakdown structure including all calculations and rationales.
+  `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      const result = JSON.parse(text);
+      return {
+        salary: inputData.salary,
+        terminationDate: inputData.terminationDate,
+        currentDate,
+        newJobSalary: inputData.newJobSalary,
+        newJobStartDate: inputData.newJobStartDate,
+        ...result
+      };
+    } catch (error) {
+      console.error("Error calculating damages:", error);
+      return null;
+    }
+  }
+
+  export async function analyzeComparators(
+    allegedMisconduct: string,
+    yourDiscipline: string,
+    comparators: Comparator[]
+  ): Promise<ComparatorAnalysis | null> {
+    const model = "gemini-2.0-flash-exp";
+
+    const prompt = `
+    You are a Texas employment law expert analyzing comparator evidence for disparate treatment.
+
+        PLAINTIFF'S SITUATION:
+        - Alleged Misconduct: ${ allegedMisconduct }
+      - Discipline Received: ${ yourDiscipline }
+    
+    COMPARATOR EMPLOYEES:
+    ${
+        comparators.map((c, i) => `
+    ${i + 1}. ${c.name} (${c.role})
+       - Conduct: ${c.conduct}
+       - Discipline: ${c.discipline}
+       - Protected Class: ${c.protectedClass}
+       - Notes: ${c.notes}
+    `).join('\n')
+      }
+
+      Analyze:
+      1. Are comparators similarly situated(same role, similar conduct) ?
+        2. Did they receive different discipline for similar / same conduct ?
+          3. Calculate disparate treatment score(0 - 100, higher = stronger evidence)
+      4. Generate discovery requests to obtain more comparator data
+      5. Create comparison chart for settlement negotiations
+    
+    Return JSON with:
+      {
+        "disparateTreatmentScore": number,
+          "discoveryRequests": string[],
+            "comparisonChart": [{ "employee": string, "conduct": string, "discipline": string, "protectedClass": string }],
+              "narrative": string
+      }
+      `;
+
+    try {
+      const ai = getAI();
+      const response = await ai.models.generateContent({
+        model: model,
+        contents: prompt,
+        config: {
+          responseMimeType: "application/json",
+        }
+      });
+      const text = response.text.trim();
+      const result = JSON.parse(text);
+      return {
+        comparators,
+        allegedMisconduct,
+        yourDiscipline,
+        ...result
+      };
+    } catch (error) {
+      console.error("Error analyzing comparators:", error);
+      return null;
+    }
+    export async function analyzePretext(
+      statedReason: string,
+      actualReason: string,
+      evidence: string,
+      comparators: string
+    ): Promise<{
+      pretextScore: number;
+      shiftingExplanations: string[];
+      deviationsFromPolicy: string[];
+      inconsistencies: string[];
+      evidenceStrength: 'Strong' | 'Moderate' | 'Weak';
+      depositionQuestions: string[];
+      modelEmployeeNarrative: string;
+    } | null> {
+      try {
+        const ai = getAI();
+        const model = "gemini-2.0-flash-exp";
+        const prompt = `
+                You are an expert legal analyst specializing in proving "pretext" in employment discrimination cases under Texas law and the McDonnell Douglas framework.
+                Your goal is to demonstrate that the employer's stated reason for termination is false and a cover-up for discrimination or retaliation.
+
+                Case Details:
+      - Employer's Stated Reason: "${statedReason}"
+        - Employee's Believed Actual Reason: "${actualReason}"
+          - Evidence Available: "${evidence}"
+            - Comparator Evidence: "${comparators}"
+
+                Analyze the facts and provide a JSON response with:
+      1. ** pretextScore **: A number 1 - 100 indicating the strength of the pretext argument.
+                2. ** shiftingExplanations **: List any changes in the employer's story over time.
+      3. ** deviationsFromPolicy **: List ways the employer failed to follow their own rules.
+                4. ** inconsistencies **: List logical gaps or contradictions in the employer's reasoning.
+      5. ** evidenceStrength **: 'Strong', 'Moderate', or 'Weak'.
+                6. ** depositionQuestions **: 5 strategic questions to ask the decision - maker under oath to expose the lie.
+                7. ** modelEmployeeNarrative **: A short paragraph drafting the "Model Employee" counter - narrative(e.g., "Despite the sudden claim of poor performance, Mr. Smith had a 5-year history of excellent reviews...").
+              `;
+
+        const response = await ai.models.generateContent({
+          model: model,
+          contents: prompt,
+          config: {
+            responseMimeType: "application/json",
+          }
+        });
+        const text = response.text.trim();
+        return JSON.parse(text);
+      } catch (error) {
+        console.error("Error analyzing pretext:", error);
+        return null;
+      }
+    }

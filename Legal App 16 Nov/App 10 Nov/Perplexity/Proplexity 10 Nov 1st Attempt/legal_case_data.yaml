@@ -1,0 +1,252 @@
+case_questions:
+  'Section 1: Personal and Employment Information':
+  - What is your full legal name?
+  - What is your current address and contact information?
+  - What is/was your job title?
+  - What were your employment dates (start and end)?
+  - What is the full legal name of your employer/company?
+  - How many employees does/did the company have (must be 15+ for EEOC jurisdiction)?
+  - What is the company's physical address where you worked?
+  - Who is the HR Director/Supervisor (name and contact information)?
+  - Is the company owned by a larger corporation (e.g., State Farm)?
+  - What was your annual salary/compensation?
+  'Section 2: Disability and Protected Class Status':
+  - What is your disability diagnosis? (e.g., Autism Spectrum Disorder)
+  - When were you formally diagnosed?
+  - Who provided your diagnosis (healthcare provider name)?
+  - Do you have medical documentation supporting your disability?
+  - How does your disability substantially limit major life activities?
+  - Did you disclose your disability to your employer? If yes, when and to whom?
+  - Have you received accommodations in previous employment or educational settings?
+  - Are there any other protected class characteristics relevant to your case (age,
+    race, sex, religion, national origin)?
+  'Section 3: Performance History (2021-2023)':
+  - What was your overall performance rating in 2021?
+  - Describe specific achievements and positive feedback received in 2021.
+  - What was your overall performance rating in 2022?
+  - Describe specific achievements and positive feedback received in 2022.
+  - What was your overall performance rating in 2023?
+  - Describe specific achievements and positive feedback received in 2023.
+  - Did you receive any promotions, bonuses, or awards during 2021-2023?
+  - Were you considered a high performer or leader during this period?
+  - Did you receive any disciplinary actions during 2021-2023?
+  - What were your primary job responsibilities during 2021-2023?
+  'Section 4: The 2024 Complaint (Protected Activity)':
+  - On what date did you file your formal discrimination complaint?
+  - What was the nature of your complaint (discrimination, harassment, hostile environment)?
+  - To whom did you submit the complaint (HR, supervisor, specific person)?
+  - Was the complaint submitted in writing? Do you have a copy?
+  - What specific issues did you raise in the complaint?
+  - Did you mention your disability in the complaint?
+  - What response, if any, did you receive to your complaint?
+  - How long after the complaint did adverse actions begin?
+  - Did anyone acknowledge receipt of your complaint?
+  'Section 5: Reasonable Accommodation Requests':
+  - Did you request reasonable accommodations for your disability? If yes, when?
+  - What specific accommodations did you request?
+  - How did you submit the accommodation request (verbal, written, email)?
+  - Do you have documentation of your accommodation request?
+  - Did the employer request medical documentation? If yes, did you provide it?
+  - Did the employer engage in an interactive process with you to discuss accommodations?
+  - Were any accommodations provided? If yes, what and when?
+  - Were the accommodations effective in allowing you to perform your job duties?
+  - Did the employer deny any requested accommodations? If yes, what reason was given?
+  - How long did the employer take to respond to your accommodation request?
+  - Was the accommodation request ignored or not followed up on?
+  - Did you clearly communicate how your disability affected your ability to perform
+    job functions?
+  'Section 6: Retaliatory Actions and Hostile Work Environment':
+  - Describe how the workplace environment changed after your 2024 complaint.
+  - What adverse employment actions did you experience after the complaint?
+  - Were your job responsibilities changed or reduced? If yes, describe specifically.
+  - Were you held to different standards than similarly situated employees?
+  - Were you assigned duties outside your pay band or job description?
+  - How were audit objectives or internal processes altered to affect you?
+  - Were you excluded from meetings, projects, or opportunities?
+  - Did you experience verbal harassment, mockery, or derogatory comments?
+  - Who were the individuals involved in the retaliatory conduct?
+  - What was the timing of each adverse action relative to your complaint?
+  - Did you receive sudden negative performance reviews after the complaint?
+  - Were you subject to increased scrutiny or micromanagement?
+  - Did you witness other employees in similar situations treated more favorably?
+  - Were there any witnesses to the retaliatory conduct?
+  - Do you have emails, texts, or other documentation of the hostile environment?
+  'Section 7: 2024 Performance Review Changes':
+  - What was your overall performance rating in 2024?
+  - How does your 2024 rating compare to your 2021-2023 ratings?
+  - When was your 2024 performance review conducted (before or after the complaint)?
+  - Who conducted your 2024 performance review?
+  - What specific criticisms were included in the 2024 review?
+  - Were you given notice of performance issues before the 2024 review?
+  - Did the 2024 review reference issues never mentioned to you before?
+  - Were the performance standards applied to you consistent with those applied to
+    others?
+  - Do you have evidence contradicting the negative findings in the 2024 review?
+  - Was the 2024 review used to justify adverse employment actions?
+  'Section 8: Mark Hayes and Leadership Changes':
+  - Who is Mark Hayes and what was his role?
+  - When did Mark Hayes leave the company?
+  - What was your relationship with Mark Hayes (supervisor, mentor, etc.)?
+  - How did the work environment change after Mark Hayes left?
+  - Who replaced Mark Hayes or took over his responsibilities?
+  - Did the retaliatory conduct increase after Mark Hayes's departure?
+  - Did Mark Hayes provide you with positive feedback or support?
+  - Do you have documentation of Mark Hayes's support or positive assessments of your
+    work?
+  'Section 9: Severance Offer and Termination':
+  - Were you offered a severance package? If yes, when?
+  - What were the terms of the severance offer (amount, duration of benefits)?
+  - Did the severance agreement include a release or waiver of claims?
+  - Why did you decline the severance offer?
+  - When were you terminated?
+  - What reason was given for your termination?
+  - Who made the decision to terminate you?
+  - Were you given advance notice of termination?
+  - Were you provided with a written termination notice?
+  - Did the employer cite performance issues as the reason for termination?
+  - How much time elapsed between your complaint and your termination?
+  'Section 10: Documentation and Evidence':
+  - Do you have copies of your performance reviews from 2021, 2022, 2023, and 2024?
+  - Do you have emails or correspondence related to your discrimination complaint?
+  - Do you have your accommodation request in writing?
+  - Do you have medical documentation supporting your disability and accommodation
+    needs?
+  - Do you have emails or communications showing the hostile work environment?
+  - Do you have documentation of job responsibility changes?
+  - Do you have witness statements or contact information for witnesses?
+  - Do you have your original job description?
+  - Do you have documentation of work product or achievements?
+  - Do you have communication records with HR or management?
+  - Do you have any audio or video recordings (if legal in your state)?
+  - Do you have company policies on accommodation or anti-discrimination?
+  'Section 11: Damages and Impact':
+  - How has the discrimination and retaliation affected your mental health?
+  - Are you currently seeing a therapist or mental health professional? If yes, who?
+  - Has your medical provider documented emotional distress or mental health impacts?
+  - How has this situation affected your personal relationships (marriage, family)?
+  - Have you experienced specific symptoms (anxiety, depression, PTSD)?
+  - What is your current employment status?
+  - How long were you unemployed after termination?
+  - What income have you lost due to termination?
+  - Have you incurred medical expenses related to the emotional distress?
+  - Have you lost career opportunities or professional reputation?
+  - How has this affected your ability to work in your field?
+  - Have you required medication or treatment for stress-related conditions?
+  - Can family members or friends provide testimony about the impact on you?
+  - What is the total financial impact (lost wages, benefits, medical costs)?
+  'Section 12: Timeline of Key Events':
+  - What is the earliest date relevant to your case?
+  - When did each significant event occur (performance reviews, complaint, accommodation
+    request, adverse actions, termination)?
+  - Create a detailed timeline showing the sequence of events.
+  - Note any patterns (e.g., positive reviews before complaint, negative after).
+  - Document the timing between protected activities and adverse actions.
+  - List dates of all communications with HR or management.
+  'Section 13: Comparator Evidence':
+  - Were there other employees in similar positions?
+  - How were similarly situated employees without disabilities treated?
+  - Do you know of other employees who made complaints - how were they treated?
+  - Were other employees given accommodations?
+  - Were performance standards applied consistently across employees?
+  - Do you have evidence of disparate treatment?
+  'Section 14: Company''s Stated Reasons and Pretext':
+  - What reasons did the company give for adverse actions?
+  - Were these reasons consistent or did they change over time?
+  - Do you have evidence contradicting the company's stated reasons?
+  - Were the stated reasons applied to other employees similarly?
+  - Can you demonstrate that the reasons are pretextual (false covers for discrimination)?
+  - Were you suddenly criticized for things never mentioned before?
+  'Section 15: Arbitration and Legal Proceedings':
+  - When was mandatory arbitration required by the company?
+  - Did you sign an arbitration agreement? If yes, when?
+  - Was the arbitration clause in your initial employment contract or added later?
+  - When was the mandatory arbitration filing date set (June 2025)?
+  - Have you filed with the EEOC yet? If yes, when?
+  - Have you filed with Texas Workforce Commission yet? If yes, when?
+  - What is your EEOC charge number (if applicable)?
+  - Have you received a right-to-sue letter?
+  - What are the deadlines for your filings (180-300 days from discriminatory act)?
+  - Are you planning to represent yourself pro se or hire an attorney?
+  'Section 16: Desired Outcomes and Demands':
+  - What are your primary goals for the good faith meeting with the company?
+  - What remedies are you seeking (reinstatement, back pay, front pay, damages)?
+  - What amount of compensatory damages are you seeking?
+  - Are you seeking punitive damages?
+  - Do you want the company to review practices regarding disabled employees?
+  - Do you want policy changes or training implemented?
+  - What would constitute a fair resolution in your view?
+  - Are you open to settlement discussions?
+  - What is your minimum acceptable outcome?
+  - What injunctive relief are you seeking (changes to company practices)?
+legal_elements:
+  ADA Failure to Accommodate Claim:
+  - 1. Plaintiff is a qualified individual with a disability (autism)
+  - 2. The disability and its limitations were known by employer
+  - 3. Employer failed to make reasonable accommodations for known limitations
+  - 4. Employer failed to engage in good faith interactive process
+  ADA Retaliation Claim:
+  - 1. Plaintiff engaged in protected activity (filed complaint, requested accommodation)
+  - 2. Employer took adverse employment action (negative reviews, termination)
+  - 3. Causal connection between protected activity and adverse action
+  - '4. Timing: adverse actions occurred shortly after protected activity'
+  Disability Discrimination:
+  - 1. Plaintiff has a disability under ADA definition
+  - 2. Plaintiff is qualified for the position and can perform essential functions
+    with/without accommodation
+  - 3. Plaintiff suffered adverse employment action
+  - 4. Adverse action occurred because of the disability
+  Hostile Work Environment:
+  - 1. Plaintiff belongs to protected class (disability)
+  - 2. Plaintiff was subjected to unwelcome harassment
+  - 3. Harassment was based on disability/protected activity
+  - 4. Harassment was severe or pervasive enough to alter conditions of employment
+  - 5. Employer knew or should have known and failed to take corrective action
+  Pretext Evidence:
+  - 1. Historical evidence of excellent performance (2021-2023 reviews)
+  - 2. Sudden decline in performance ratings after complaint (2024)
+  - 3. No prior notice of performance issues
+  - 4. Inconsistent application of standards
+  - 5. Temporal proximity between complaint and adverse actions
+  - 6. Disparate treatment compared to similarly situated employees
+company_demands:
+  Investigation and Review Requirements:
+  - Full investigation of discrimination and retaliation allegations
+  - Review of all performance reviews from 2021-2024 with explanation of rating changes
+  - Review of all emails and correspondence regarding the 2024 complaint
+  - Review of all accommodation request communications and responses
+  - Explanation of changes in job responsibilities and audit objectives post-complaint
+  - Review of all communications driving removal of work/responsibilities
+  - Comparison analysis of similarly situated employees' treatment
+  - Timeline of all adverse actions following the complaint
+  - Documentation of interactive process attempts (or lack thereof)
+  - Company's policies on disability accommodation and anti-discrimination
+  Remedies Demanded:
+  - Compensatory damages for emotional distress
+  - Compensatory damages for damage to personal relationships and marriage
+  - Back pay from termination date to present
+  - Front pay for future lost earnings
+  - Reinstatement or front pay in lieu of reinstatement
+  - Restoration of benefits (health insurance, retirement contributions)
+  - Punitive damages for deliberate indifference and gross negligence
+  - Attorney's fees and costs (if represented)
+  - Expungement of negative performance reviews and termination from record
+  - Positive reference or neutral reference agreement
+  Policy and Practice Changes:
+  - Independent review of company practices regarding disabled employees
+  - Review of accommodation process and procedures
+  - Training for management on ADA compliance and disability rights
+  - Training on anti-retaliation protections
+  - Policy changes to ensure timely response to accommodation requests
+  - Establishment of clear interactive process procedures
+  - Third-party monitoring of discrimination complaint handling
+  Good Faith Meeting Agenda Items:
+  - Presentation of timeline showing correlation between complaint and adverse actions
+  - Presentation of performance review comparison (2021-2023 vs 2024)
+  - Discussion of accommodation request and employer's response/lack thereof
+  - Presentation of evidence of hostile work environment
+  - Discussion of pretext evidence contradicting employer's stated reasons
+  - Opportunity for employer to provide legitimate non-discriminatory explanation
+  - Discussion of potential remedies and settlement options
+  - Establishment of timeline for resolution
+  - Discussion of alternative dispute resolution options
+  - Documentation of good faith efforts by both parties

@@ -1,0 +1,180 @@
+
+═══════════════════════════════════════════════════════════════════
+    API COMPARISON: Perplexity vs Gemini for Case Builder
+═══════════════════════════════════════════════════════════════════
+
+PERPLEXITY API (Sonar Models)
+───────────────────────────────────────────────────────────────────
+
+✅ ADVANTAGES:
+• Cost-Effective: $0.20 - $5 per 1M tokens (vs Gemini varies)
+• Built-in Web Search: Sonar models have real-time web search
+• Structured JSON Output: Native JSON Schema support
+• File Upload Support: Up to 50MB per file (PDF, DOC, DOCX, TXT, RTF)
+• Base64 & URL support: Can upload files via URL or base64
+• Competitive Pricing: Search API at $5 per 1K requests
+• Pro Plan Bonus: $5/month API credit included with Pro subscription
+• OpenAI-Compatible: Uses same API structure as OpenAI
+
+❌ LIMITATIONS:
+• Context Window: Default 8,000 tokens (~20K characters)
+  - Can handle longer with file upload conversion
+• Recursive JSON: Not supported
+• Reasoning Tokens: sonar-reasoning-pro includes <think> tokens
+  - Requires custom parsing to extract JSON
+• File Formats: Limited to PDF, DOC, DOCX, TXT, RTF
+  - No native Excel/CSV parsing via API
+• Rate Limits: May throttle based on usage patterns
+
+───────────────────────────────────────────────────────────────────
+
+GEMINI API (Your Current Code)
+───────────────────────────────────────────────────────────────────
+
+✅ ADVANTAGES:
+• Large Context: 30,000+ characters per document
+• Thinking Budget: 32,768 tokens for complex analysis
+• Multimodal: Images, audio, video support
+• Structured Output: Excellent JSON schema validation
+• File Processing: Handles spreadsheets, images natively
+• No think tokens: Clean JSON output
+
+❌ LIMITATIONS:
+• Cost: Variable pricing (can be higher)
+• No Built-in Search: Would need separate web search
+• API Key Management: Requires Google AI setup
+
+═══════════════════════════════════════════════════════════════════
+                        RECOMMENDATION
+═══════════════════════════════════════════════════════════════════
+
+HYBRID APPROACH - USE BOTH:
+
+1. PERPLEXITY SONAR for:
+   ✓ Case law research (built-in web search)
+   ✓ Handbook policy analysis (can fetch URLs)
+   ✓ Recent legal precedents and updates
+   ✓ General case analysis with web citations
+   ✓ Cost-effective for high-volume requests
+
+2. GEMINI 2.5 Pro for:
+   ✓ Document analysis (performance reviews, emails)
+   ✓ Spreadsheet parsing (comparator data, timelines)
+   ✓ Complex multi-document analysis
+   ✓ Settlement calculations
+   ✓ Evidence categorization
+
+COST ANALYSIS:
+───────────────────────────────────────────────────────────────────
+
+Perplexity Pricing:
+• Sonar Models: $0.2-$5 per 1M tokens
+• Search API: $5 per 1K requests (no token costs)
+• With Pro Plan ($20/mo): Get $5/month API credit
+• Average case analysis: ~50K tokens = $0.25 max
+
+Gemini Pricing:
+• Gemini 2.5 Pro: Varies by region
+• Document processing: Per token pricing
+• Average case: Similar or slightly higher
+
+FOR YOUR USE CASE (Single employment case):
+• Total API costs: Under $10 for complete case prep
+• Either API would be cost-effective
+• Perplexity slightly cheaper for text-heavy analysis
+• Gemini better for Excel/spreadsheet processing
+
+═══════════════════════════════════════════════════════════════════
+                    IMPLEMENTATION STRATEGY
+═══════════════════════════════════════════════════════════════════
+
+OPTION 1: PERPLEXITY-ONLY (Recommended for Cost)
+────────────────────────────────────────────────
+• Use Perplexity Sonar for all text analysis
+• Convert Excel/CSV to text before processing
+• Leverage built-in web search for case law
+• Simpler API key management
+
+OPTION 2: DUAL-API (Recommended for Power)
+───────────────────────────────────────────
+• Perplexity: Case law, handbook analysis, web research
+• Gemini: Document uploads, spreadsheet analysis
+• Best of both worlds
+• Minimal cost increase (~$5 total)
+
+OPTION 3: GEMINI-ONLY (Your Current Code)
+──────────────────────────────────────────
+• Keep existing proven implementation
+• Add web search via separate calls if needed
+• Already validated and working
+
+═══════════════════════════════════════════════════════════════════
+
+FINAL RECOMMENDATION FOR YOUR CASE BUILDER:
+═══════════════════════════════════════════════════════════════════
+
+USE PERPLEXITY SONAR API
+
+Reasons:
+1. Built-in search perfect for Texas case law research
+2. Cost-effective ($0.20-$5 per 1M tokens)
+3. Native JSON structured output
+4. File upload support (PDFs, Word docs)
+5. You already get $5 API credit with Pro plan
+6. OpenAI-compatible (easy to implement)
+7. For ~$5-10 total, you get complete case analysis
+
+How to Handle Spreadsheets:
+• Option A: Convert Excel to CSV, then to text
+• Option B: Parse Excel client-side, send data as JSON
+• Option C: Use both APIs (Gemini for Excel only)
+
+Implementation Code Pattern:
+─────────────────────────────────────────────────────────────────
+
+from openai import OpenAI
+
+client = OpenAI(
+    api_key="YOUR_PERPLEXITY_API_KEY",
+    base_url="https://api.perplexity.ai"
+)
+
+# For document analysis
+response = client.chat.completions.create(
+    model="sonar-pro",  # or sonar-reasoning-pro
+    messages=[
+        {
+            "role": "system",
+            "content": "You are an expert employment law attorney..."
+        },
+        {
+            "role": "user",
+            "content": [{
+                "type": "text",
+                "text": "Analyze this performance review..."
+            }, {
+                "type": "file_url",
+                "file_url": {
+                    "url": "https://example.com/review.pdf"
+                }
+            }]
+        }
+    ],
+    response_format={
+        "type": "json_schema",
+        "json_schema": {
+            "schema": YourPydanticModel.model_json_schema()
+        }
+    }
+)
+
+# For case law research (uses built-in search)
+response = client.chat.completions.create(
+    model="sonar",
+    messages=[{
+        "role": "user",
+        "content": "Find Texas case law on ADA retaliation with temporal proximity"
+    }]
+)
+
+═══════════════════════════════════════════════════════════════════

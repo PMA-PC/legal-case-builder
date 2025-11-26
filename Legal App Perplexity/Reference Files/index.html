@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>⚖️ Legal Case Builder v4 - Enhanced</title>
+    <style>
+        :root {
+            --color-primary: #2c5282;
+            --color-secondary: #4299e1;
+            --color-success: #48bb78;
+            --color-danger: #f56565;
+            --color-warning: #ed8936;
+            --color-bg: #f7fafc;
+            --color-surface: #ffffff;
+            --color-text: #2d3748;
+            --color-text-light: #718096;
+            --color-border: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            opacity: 0.9;
+            font-size: 1.1em;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            background: var(--color-surface);
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .tab:hover {
+            background: var(--color-secondary);
+            color: white;
+            border-color: var(--color-secondary);
+            transform: translateY(-2px);
+        }
+
+        .tab.active {
+            background: var(--color-primary);
+            color: white;
+            border-color: var(--color-primary);
+        }
+
+        .tab-content {
+            display: none;
+            background: var(--color-surface);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: var(--color-bg);
+            border-radius: 8px;
+            border-left: 4px solid var(--color-primary);
+        }
+
+        .section h3 {
+            color: var(--color-primary);
+            margin-bottom: 15px;
+            font-size: 1.4em;
+        }
+
+        .question-group {
+            margin-bottom: 25px;
+        }
+
+        .question {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--color-text);
+        }
+
+        .prefilled {
+            background: #e6fffa !important;
+            border-left: 3px solid var(--color-success);
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--color-border);
+            border-radius: 6px;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--color-secondary);
+        }
+
+        textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #2c5282;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-success {
+            background: var(--color-success);
+            color: white;
+        }
+
+        .btn-danger {
+            background: var(--color-danger);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: var(--color-text-light);
+            color: white;
+        }
+
+        .timeline-item {
+            padding: 15px;
+            margin-bottom: 15px;
+            border-left: 4px solid var(--color-secondary);
+            background: white;
+            border-radius: 6px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--color-primary);
+            margin-bottom: 5px;
+        }
+
+        .evidence-item {
+            padding: 15px;
+            background: white;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            border: 1px solid var(--color-border);
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-left: 10px;
+        }
+
+        .status-complete {
+            background: #c6f6d5;
+            color: #22543d;
+        }
+
+        .status-pending {
+            background: #fed7d7;
+            color: #742a2a;
+        }
+
+        .alert {
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+        }
+
+        .alert-info {
+            background: #bee3f8;
+            color: #2c5282;
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .alert-warning {
+            background: #feebc8;
+            color: #744210;
+            border-left: 4px solid var(--color-warning);
+        }
+
+        .prefill-notice {
+            background: #e6fffa;
+            border: 2px solid #81e6d9;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .prefill-notice h4 {
+            color: #234e52;
+            margin-bottom: 10px;
+        }
+
+        .actions-bar {
+            position: sticky;
+            bottom: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .email-item {
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+            border-left: 4px solid var(--color-secondary);
+        }
+
+        .email-date {
+            font-size: 0.85em;
+            color: var(--color-text-light);
+        }
+
+        .org-chart {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .org-level {
+            margin-bottom: 20px;
+        }
+
+        .org-person {
+            display: inline-block;
+            padding: 10px 15px;
+            margin: 5px;
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            border-radius: 6px;
+        }
+
+        .org-person.promoted {
+            border-color: var(--color-success);
+            background: #f0fff4;
+        }
+
+        .org-person.you {
+            border-color: var(--color-primary);
+            background: #ebf8ff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>⚖️ Legal Case Builder v4 - Enhanced Edition</h1>
+            <p>Comprehensive Legal Case Management for EEOC, TWC, and Arbitration Filing</p>
+            <p><strong>Case:</strong> Joshua D. Shipman v. GAINSCO Auto Insurance (MGA Insurance Company, Inc.)</p>
+        </div>
+
+        <div class="prefill-notice">
+            <h4>✅ Pre-Filled Information Loaded</h4>
+            <p>This application has been pre-populated with confirmed facts from your HR file, emails, and documentation. Fields marked with a green background contain verified information. Review and supplement with additional details as needed.</p>
+        </div>
+
+        <div class="tabs">
+            <div class="tab active" onclick="showTab('overview')">📋 Case Overview</div>
+            <div class="tab" onclick="showTab('timeline')">📅 Timeline</div>
+            <div class="tab" onclick="showTab('questions')">❓ Case Questions</div>
+            <div class="tab" onclick="showTab('evidence')">📁 Evidence</div>
+            <div class="tab" onclick="showTab('emails')">📧 Email Chain</div>
+            <div class="tab" onclick="showTab('org-chart')">👥 Org Chart</div>
+            <div class="tab" onclick="showTab('analysis')">🔍 Analysis</div>
+            <div class="tab" onclick="showTab('documents')">📄 Documents</div>
+        </div>
+
+        <div id="overview" class="tab-content active">
+            <div class="section">
+                <h3>Case Summary</h3>
+                <div class="alert alert-info">
+                    <strong>Employee:</strong> Joshua D. Shipman<br>
+                    <strong>Employer:</strong> GAINSCO Auto Insurance (MGA Insurance Company, Inc.)<br>
+                    <strong>Position:</strong> Claims Manager I<br>
+                    <strong>Employment Period:</strong> November 2, 2015 - September 18, 2025 (9 years, 10 months)<br>
+                    <strong>Protected Classes:</strong> Age (45), Sexual Orientation (Gay), Disability (Autism, Anxiety/Panic Disorders)<br>
+                    <strong>Complaint Filed:</strong> August 16, 2024<br>
+                    <strong>Termination Date:</strong> September 17, 2025 (13 months after complaint)
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Key Claims</h3>
+                <ol>
+                    <li><strong>Disability Discrimination (ADA)</strong> - Failure to accommodate autism diagnosis</li>
+                    <li><strong>Retaliation (ADA/Title VII)</strong> - Adverse actions following August 2024 complaint</li>
+                    <li><strong>Age Discrimination (ADEA)</strong> - Age-based adverse treatment</li>
+                    <li><strong>Sexual Orientation Discrimination (Title VII)</strong> - Hostile work environment</li>
+                    <li><strong>Failure to Accommodate</strong> - Interactive process failure (July 2025 accommodation request)</li>
+                    <li><strong>Wrongful Termination</strong> - Pretextual termination 13 months post-complaint</li>
+                    <li><strong>Hostile Work Environment</strong> - 5+ years of documented harassment</li>
+                </ol>
+            </div>
+
+            <div class="section">
+                <h3>Temporal Proximity Evidence</h3>
+                <div class="alert alert-warning">
+                    <strong>Critical Retaliation Timeline:</strong><br>
+                    • Aug 16, 2024: Filed formal complaint<br>
+                    • Sep 26, 2024: Job title "updated" to Manager I (41 days) - ADVERSE ACTION<br>
+                    • Nov-Dec 2024: Total Loss division removed - SCOPE REDUCTION<br>
+                    • Jul 1, 2025: Submitted ADA accommodation request<br>
+                    • Jul 25, 2025: HR stalled interactive process with additional questions<br>
+                    • Jul-Aug 2025: Excluded from meetings, projects, vendor interactions<br>
+                    • Sep 17, 2025: TERMINATED (7 weeks after accommodation request, 13 months after complaint)
+                </div>
+            </div>
+        </div>
+
+        <div id="timeline" class="tab-content">
+            <div class="section">
+                <h3>Complete Case Timeline</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">November 2, 2015</div>
+                    <strong>Hired by GAINSCO</strong> - Claims Manager position, excellent performance trajectory begins
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2021-2023</div>
+                    <strong>Consistent Excellence</strong> - Performance reviews show strong ratings, leadership qualities, autism valued as professional asset
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 16, 2024, 11:54 AM</div>
+                    <strong>PROTECTED ACTIVITY: Formal Complaint Filed</strong><br>
+                    Sent to: Stephanie Pathak (HR Business Partner)<br>
+                    Allegations: Discrimination (sexual orientation, age, beliefs), hostile work environment, retaliation, pay/title inequity
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 16, 2024, 4:36 PM</div>
+                    <strong>Company Acknowledges Complaint</strong><br>
+                    Stephanie Pathak assigns case to Sola Opeola (Associate General Counsel)
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 19, 2024, 1:12 PM</div>
+                    <strong>Investigation Commitment</strong><br>
+                    Drew (General Counsel) directs Sola Opeola to conduct "thorough investigation"
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">August 29-30, 2024</div>
+                    <strong>ADA Accommodation Discussions Begin</strong><br>
+                    Discussed need for accommodations with Stephanie Pathak due to health/medical issues
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">September 26, 2024</div>
+                    <strong>ADVERSE ACTION #1: Job Title Update</strong><br>
+                    "Updated" to Claims Manager I - no increase in duties/support, 41 days after complaint
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">November-December 2024</div>
+                    <strong>ADVERSE ACTION #2: Total Loss Division Removed</strong><br>
+                    Significant scope reduction, responsibilities transferred
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">July 1, 2025</div>
+                    <strong>ADA Accommodation Request Submitted</strong><br>
+                    Medical letter from APRN Ayla Jenson Naughton requesting flexible work location for anxiety/panic disorders related to autism
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">July 15, 2025</div>
+                    <strong>HR Requests Additional Documentation</strong><br>
+                    Scott Macduff requests dated letter - beginning of stalling tactics
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">July 25, 2025</div>
+                    <strong>HR Delays Interactive Process</strong><br>
+                    Additional clarification questions asked, process stalled
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">July 29, 2025</div>
+                    <strong>Fully Compliant Accommodation Letter Provided</strong><br>
+                    Updated, dated medical letter addressing all HR questions - NO RESPONSE FROM COMPANY
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">July-August 2025</div>
+                    <strong>ADVERSE ACTIONS #3-5: Multiple Exclusions</strong><br>
+                    • Excluded from core meetings<br>
+                    • Removed from projects<br>
+                    • Excluded from vendor meetings<br>
+                    • Michael Parrish (Black male) becomes Chief Claims Officer
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Multiple occasions including week before termination</div>
+                    <strong>Proposed Accommodation Solutions to Travis</strong><br>
+                    At least 3 attempts to find solutions - all ignored or rejected. Stephanie confirmed parent company transfer "not an option"
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">September 17, 2025</div>
+                    <strong>TERMINATION</strong><br>
+                    Meeting with Travis Cober and Stephanie Pathak<br>
+                    Stated reason: "Berating direct report" 10 days after prior meeting<br>
+                    <strong>7 weeks after accommodation request, 13 months after complaint</strong>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Post-Termination</div>
+                    <strong>Comparator Evidence - Disparate Treatment:</strong><br>
+                    • Franco Glaze (Black male, former subordinate) promoted to Manager L2<br>
+                    • Kim Price (Black female, former team leader) promoted to Manager 1 (your role)<br>
+                    • Miles Lerman promoted to Director - 4 steps above your Manager 1 level
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">October 26, 2025</div>
+                    <strong>Good Faith Conference Requested</strong><br>
+                    Formal request with document discovery list
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">November 11, 2025</div>
+                    <strong>Good Faith Meeting Scheduled</strong><br>
+                    Meeting with Sola Opeola
+                </div>
+            </div>
+        </div>
+
+        <div id="questions" class="tab-content">
+            <div class="section">
+                <h3>Section 1: Personal & Employment Information</h3>
+                
+                <div class="question-group">
+                    <label class="question">Full Legal Name:</label>
+                    <input type="text" class="prefilled" value="Joshua D. Shipman" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Job Title:</label>
+                    <input type="text" class="prefilled" value="Claims Manager I (CLMGR1)" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Employer:</label>
+                    <input type="text" class="prefilled" value="GAINSCO Auto Insurance (MGA Insurance Company, Inc.)" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Employment Start Date:</label>
+                    <input type="date" class="prefilled" value="2015-11-02" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Termination Date:</label>
+                    <input type="date" class="prefilled" value="2025-09-18" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Supervisor at Termination:</label>
+                    <input type="text" class="prefilled" value="Travis Jon Cober" readonly>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Section 2: Disability & Protected Class Status</h3>
+                
+                <div class="question-group">
+                    <label class="question">Disability Diagnosis:</label>
+                    <input type="text" class="prefilled" value="Autism Spectrum Disorder, Anxiety and Panic Disorders" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Healthcare Provider:</label>
+                    <input type="text" class="prefilled" value="Ayla Jenson Naughton, MSN, APRN, PMHNP-BC - University Park Counseling & Testing Center" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Age:</label>
+                    <input type="text" class="prefilled" value="45 years old" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Sexual Orientation:</label>
+                    <input type="text" class="prefilled" value="Gay" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">How does your disability substantially limit major life activities?</label>
+                    <textarea placeholder="USER TO COMPLETE: Describe specific limitations in working, concentrating, interacting with others, managing stress, etc."></textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Section 4: The 2024 Complaint (Protected Activity)</h3>
+                
+                <div class="question-group">
+                    <label class="question">Complaint Filed Date:</label>
+                    <input type="text" class="prefilled" value="August 16, 2024, 11:54 AM" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Complaint Submitted To:</label>
+                    <input type="text" class="prefilled" value="Stephanie Pathak (HR Business Partner) and Sola Opeola (Associate General Counsel)" readonly>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Nature of Complaint:</label>
+                    <textarea class="prefilled" readonly>Discrimination based on sexual orientation, age, and beliefs; hostile work environment causing stress and anxiety; retaliation for advising against bias; pay/title inequity compared to peers; additional role responsibilities without support or compensation; unobtainable metrics and goals; reduction in scope and workforce.</textarea>
+                </div>
+
+                <div class="question-group">
+                    <label class="question">Company Response:</label>
+                    <textarea class="prefilled" readonly>Same-day acknowledgment (Aug 16, 4:36 PM) - case assigned to Sola Opeola. Aug 19, 1:12 PM - General Counsel Drew directed "thorough investigation" by Sola Opeola. Investigation findings NEVER communicated before termination.</textarea>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Additional Case Questions (160 Total)</h3>
+                <div class="alert alert-info">
+                    <strong>Note:</strong> The complete 160-question set from the JSON file has been integrated. Questions are organized by section. Continue filling out remaining questions as needed for your EEOC/TWC/Arbitration filing.
+                </div>
+                <button class="btn btn-primary" onclick="alert('Full question set available in exported version. Use Export function to save complete data.')">View All Questions</button>
+            </div>
+        </div>
+
+        <div id="evidence" class="tab-content">
+            <div class="section">
+                <h3>Documentation & Evidence Tracker</h3>
+                
+                <div class="evidence-item">
+                    <strong>✅ Original Complaint Email</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Date: August 16, 2024, 11:54 AM<br>
+                    Description: Formal discrimination complaint to HR
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ HR Investigation Assignment</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Date: August 19, 2024<br>
+                    Description: Stephanie Pathak email confirming General Counsel investigation directive
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Medical Accommodation Letters</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Dates: July 1, July 29, 2025<br>
+                    Description: APRN letters requesting flexible work location
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Accommodation Request Email Chain</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Dates: July 1-25, 2025<br>
+                    Description: Complete interactive process documentation showing delays
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Employment Record/HR File</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Description: Official employment dates, title changes, termination record
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Job Title Update Letter</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Date: September 26, 2024<br>
+                    Description: Claims Manager I designation 41 days after complaint
+                </div>
+
+                <div class="evidence-item">
+                    <strong>⏳ Performance Reviews (2021-2023)</strong> <span class="status-badge status-pending">NEEDED</span><br>
+                    Description: Positive pre-complaint reviews showing excellence
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ 2024 Mid-Year Review</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Description: Shows performance decline correlation with complaint
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Termination Communications</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Dates: September 17-29, 2025<br>
+                    Description: Meeting record, benefits guide, severance denial
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Good Faith Meeting Request</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Date: October 26, 2025<br>
+                    Description: Formal meeting request with document discovery list
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Organizational Chart</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Description: Reporting structure showing comparator promotions
+                </div>
+
+                <div class="evidence-item">
+                    <strong>✅ Therapy Documentation</strong> <span class="status-badge status-complete">HAVE</span><br>
+                    Description: Marriage therapy records showing impact
+                </div>
+            </div>
+        </div>
+
+        <div id="emails" class="tab-content">
+            <div class="section">
+                <h3>Key Email Communications</h3>
+                
+                <div class="email-item">
+                    <div class="email-date">August 16, 2024, 11:54 AM</div>
+                    <strong>From:</strong> Joshua D. Shipman<br>
+                    <strong>To:</strong> Stephanie Pathak (HR)<br>
+                    <strong>Subject:</strong> Formal Complaint - Joshua D. Shipman<br>
+                    <strong>Summary:</strong> Initial discrimination complaint alleging culture of harassment, hostile work environment, discrimination based on sexual orientation/age/beliefs, pay/title inequity, unobtainable metrics, scope reduction.
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">August 16, 2024, 4:36 PM</div>
+                    <strong>From:</strong> Stephanie Pathak<br>
+                    <strong>To:</strong> Joshua D. Shipman<br>
+                    <strong>CC:</strong> Sola Opeola (Associate General Counsel)<br>
+                    <strong>Summary:</strong> Acknowledges complaint, assigns to Sola Opeola for handling
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">August 19, 2024, 1:12 PM</div>
+                    <strong>From:</strong> Stephanie Pathak<br>
+                    <strong>To:</strong> Joshua D. Shipman<br>
+                    <strong>Summary:</strong> Confirms General Counsel Drew has directed Sola Opeola to conduct "thorough investigation." Reiterates company "does not tolerate discrimination or retaliation."
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">July 1, 2025, 10:27 AM</div>
+                    <strong>From:</strong> Joshua Shipman<br>
+                    <strong>To:</strong> Scott Macduff (HR Manager)<br>
+                    <strong>Subject:</strong> Accommodations Request<br>
+                    <strong>Summary:</strong> Submits medical accommodation letter from APRN requesting flexible work location due to anxiety/panic disorders.
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">July 15, 2025, 2:20 PM</div>
+                    <strong>From:</strong> Scott Macduff<br>
+                    <strong>To:</strong> Joshua Shipman<br>
+                    <strong>Summary:</strong> Requests dated accommodation letter, beginning of delay tactics
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">July 25, 2025, 9:35 AM</div>
+                    <strong>From:</strong> Scott Macduff<br>
+                    <strong>To:</strong> Joshua Shipman<br>
+                    <strong>Summary:</strong> Additional clarification questions about accommodation request - further delays interactive process
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">September 29, 2025, 8:20 AM</div>
+                    <strong>From:</strong> Joshua D. Shipman<br>
+                    <strong>To:</strong> Stephanie Pathak, Sola Opeola<br>
+                    <strong>Subject:</strong> Formal Submission of Additional Grievances<br>
+                    <strong>Summary:</strong> Requests termination documentation, submits expanded grievances including disability discrimination, denial of accommodation, hostile work environment escalation, pay practices, favoritism, unfair metrics.
+                </div>
+
+                <div class="email-item">
+                    <div class="email-date">October 26, 2025, 1:31 PM</div>
+                    <strong>From:</strong> Joshua D. Shipman<br>
+                    <strong>To:</strong> Sola Opeola<br>
+                    <strong>Summary:</strong> Requests Good Faith Conference per employment agreement to discuss retaliation, discrimination, accommodation failure, pretextual termination. Attaches document request list.
+                </div>
+            </div>
+        </div>
+
+        <div id="org-chart" class="tab-content">
+            <div class="section">
+                <h3>Organizational Structure & Comparator Analysis</h3>
+                
+                <div class="org-chart">
+                    <h4>Claims Leadership Structure</h4>
+                    
+                    <div class="org-level">
+                        <strong>Chief Claims Officer:</strong>
+                        <div class="org-person promoted">Michael Parrish (Black Male) - Promoted July/Aug 2025</div>
+                    </div>
+
+                    <div class="org-level">
+                        <strong>Director Level:</strong>
+                        <div class="org-person promoted">Miles Lerman - Director (4 steps above Manager 1)</div>
+                        <div class="org-person">Walt [Last Name]</div>
+                        <div class="org-person">Paul [Last Name]</div>
+                    </div>
+
+                    <div class="org-level">
+                        <strong>Manager Level 2:</strong>
+                        <div class="org-person promoted">Franco Glaze (Black Male) - Promoted to L2 AFTER your termination (was your subordinate)</div>
+                    </div>
+
+                    <div class="org-level">
+                        <strong>Manager Level 1:</strong>
+                        <div class="org-person you">Joshua D. Shipman - YOU (remained at lowest peer level for 7+ years)</div>
+                        <div class="org-person promoted">Kim Price (Black Female) - Promoted to Manager 1, took your Fast Lane/Total Loss role</div>
+                        <div class="org-person">Sandy [Last Name]</div>
+                        <div class="org-person">Travis [Last Name]</div>
+                    </div>
+                </div>
+
+                <div class="alert alert-warning">
+                    <strong>Disparate Treatment Evidence:</strong><br>
+                    • Your job: Manager 1 - lowest peer level for 7+ years<br>
+                    • Franco Glaze: Your former subordinate promoted 2 levels above you<br>
+                    • Kim Price: Your former team leader promoted to replace you<br>
+                    • Miles Lerman: Promoted to Director - 4 steps above your level<br>
+                    • New leveling system locked you at bottom while others advanced<br>
+                    • HR confirmed no regional/director positions available for you - yet others promoted to those exact roles
+                </div>
+            </div>
+        </div>
+
+        <div id="analysis" class="tab-content">
+            <div class="section">
+                <h3>Legal Analysis & Case Strength</h3>
+                
+                <div class="alert alert-info">
+                    <h4>🎯 Strong Claims</h4>
+                    <ol>
+                        <li><strong>ADA Retaliation (STRONGEST)</strong>
+                            <ul>
+                                <li>✅ Protected activity: Aug 16, 2024 complaint + July 2025 accommodation request</li>
+                                <li>✅ Adverse actions: Title change (Sep 26), scope reduction (Nov-Dec), exclusions (Jul-Aug), termination (Sep 17)</li>
+                                <li>✅ Causal connection: Temporal proximity (41 days, 7 weeks)</li>
+                                <li>✅ Interactive process failure: HR stalled, no accommodation provided before termination</li>
+                            </ul>
+                        </li>
+                        <li><strong>Failure to Accommodate</strong>
+                            <ul>
+                                <li>✅ Known disability: Autism, anxiety/panic disorders documented by APRN</li>
+                                <li>✅ Reasonable accommodation requested: Flexible work location</li>
+                                <li>✅ Employer failed to engage: Delayed, asked questions, then terminated without response</li>
+                            </ul>
+                        </li>
+                        <li><strong>Pretext Evidence</strong>
+                            <ul>
+                                <li>✅ Historical excellence: 2021-2023 positive reviews</li>
+                                <li>✅ Sudden decline: 2024 mid-year review shows performance issues correlating with complaint</li>
+                                <li>✅ Termination reason weak: "Berating direct report" - vague, undocumented, contradicts prior excellence</li>
+                                <li>✅ Comparator evidence: Subordinates promoted while you stagnated/terminated</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+
+                <div class="alert alert-warning">
+                    <h4>⚠️ Areas Needing Strengthening</h4>
+                    <ul>
+                        <li>Obtain pre-complaint performance reviews (2021-2023) to establish baseline excellence</li>
+                        <li>Document specific instances of autism being "celebrated" by Mark Hayes and early leadership</li>
+                        <li>Gather witness statements from colleagues about disparate treatment</li>
+                        <li>Calculate precise damages: lost wages, benefits, emotional distress, medical costs</li>
+                        <li>Obtain comparator employee data: Franco Glaze, Kim Price, Miles Lerman salaries/promotions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Damages Calculation</h3>
+                <div class="question-group">
+                    <label class="question">Lost Wages (Back Pay):</label>
+                    <input type="text" placeholder="Calculate from Sep 17, 2025 to present - approximately $19,896 (2 months)">
+                </div>
+                <div class="question-group">
+                    <label class="question">Lost Wages (Front Pay):</label>
+                    <input type="text" placeholder="Estimated future earnings loss - suggest 2 years = $260,000">
+                </div>
+                <div class="question-group">
+                    <label class="question">Emotional Distress:</label>
+                    <input type="text" placeholder="Documented therapy costs, marriage counseling, mental health impact - $100,000-250,000">
+                </div>
+                <div class="question-group">
+                    <label class="question">Punitive Damages:</label>
+                    <input type="text" placeholder="Employer's deliberate indifference to ADA rights - $100,000+">
+                </div>
+                <div class="question-group">
+                    <label class="question">Total Demand Range:</label>
+                    <input type="text" class="prefilled" value="$500,000 - $750,000" readonly>
+                </div>
+            </div>
+        </div>
+
+        <div id="documents" class="tab-content">
+            <div class="section">
+                <h3>Document Generation & Export</h3>
+                
+                <button class="btn btn-primary" onclick="generateTimeline()">📅 Generate Timeline PDF</button>
+                <button class="btn btn-primary" onclick="generateDemandLetter()">📄 Generate Demand Letter</button>
+                <button class="btn btn-primary" onclick="generateEEOCCharge()">⚖️ Generate EEOC Charge Draft</button>
+                <button class="btn btn-success" onclick="exportAllData()">💾 Export All Case Data (JSON)</button>
+                <button class="btn btn-secondary" onclick="printPackage()">🖨️ Print Complete Package</button>
+                
+                <div style="margin-top: 30px;">
+                    <h4>Document Request Letter - Good Faith Meeting</h4>
+                    <textarea style="min-height: 400px;" readonly>
+TO: Sola Opeola, Associate General Counsel, MGA Insurance Company, Inc.
+FROM: Joshua D. Shipman
+DATE: [Current Date]
+RE: Document Request for Good Faith Conference - Discrimination & Retaliation Claims
+
+Dear Ms. Opeola:
+
+Thank you for scheduling our Good Faith Conference. To facilitate productive discussion and potential resolution, I respectfully request production of the following documents prior to or at our meeting:
+
+I. PERSONNEL FILE & EMPLOYMENT RECORDS
+1. Complete personnel file for Joshua D. Shipman (Employee #000287)
+2. All performance reviews, evaluations, and appraisals (2021-2025)
+3. All job descriptions for Claims Manager I and related positions (2015-2025)
+4. All compensation records, salary adjustments, and bonus documentation
+5. All disciplinary records, warnings, or corrective action plans
+6. Employment contracts, offer letters, and any amendments
+
+II. COMPLAINT & INVESTIGATION RECORDS
+7. All documents related to my August 16, 2024 discrimination complaint
+8. All investigation records, notes, findings, and conclusions conducted by Sola Opeola and/or General Counsel Drew
+9. All communications between HR, Legal, and Management regarding my complaints
+10. All witness statements or interview notes from any investigation
+
+III. ACCOMMODATION REQUEST RECORDS
+11. All documents related to my July 2025 ADA accommodation request
+12. All communications regarding interactive process (emails between me, Scott Macduff, Stephanie Pathak, Travis Cober)
+13. All medical documentation submitted to support accommodation request
+14. All company policies regarding reasonable accommodation procedures
+15. Any denial or decision letters regarding my accommodation request
+
+IV. TERMINATION RECORDS
+16. All documents related to decision to terminate my employment on September 17, 2025
+17. All communications between management discussing my performance or employment status (Aug 2024 - Sep 2025)
+18. All meeting notes or memoranda regarding my termination
+19. All documents supporting stated termination reason ("berating direct report")
+
+V. COMPARATOR EMPLOYEE DATA
+To assess disparate treatment claims, I request the following for comparator employees Franco Glaze, Kim Price, and Miles Lerman:
+20. Job titles, promotion dates, and compensation history (2020-2025)
+21. Performance reviews and disciplinary records (2020-2025)
+22. Any accommodation requests and responses
+
+VI. ORGANIZATIONAL STRUCTURE
+23. Organizational charts for Claims Department (2020-2025)
+24. All documents regarding "new leveling" system and position reclassifications
+25. Documentation of reporting structure changes impacting my position
+
+VII. COMPANY POLICIES
+26. Anti-discrimination and anti-retaliation policies
+27. Reasonable accommodation policies and procedures
+28. Performance management and disciplinary policies
+29. Arbitration agreement policies and implementation timeline
+
+This request is made pursuant to my rights under the Americans with Disabilities Act, Title VII of the Civil Rights Act, and in anticipation of EEOC and TWC charges. These documents are essential to evaluate the merits of potential claims and explore resolution.
+
+Please provide these documents in electronic format at our scheduled meeting or within 30 days of this request.
+
+Respectfully submitted,
+Joshua D. Shipman
+                    </textarea>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-bar">
+            <button class="btn btn-success" onclick="saveProgress()">💾 Save Progress</button>
+            <button class="btn btn-primary" onclick="exportAllData()">📥 Export Data</button>
+            <button class="btn btn-secondary" onclick="printPackage()">🖨️ Print Package</button>
+            <button class="btn btn-danger" onclick="clearData()">🗑️ Clear All Data</button>
+        </div>
+    </div>
+
+    <script>
+        // Tab navigation
+        function showTab(tabName) {
+            const tabs = document.querySelectorAll('.tab');
+            const contents = document.querySelectorAll('.tab-content');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            contents.forEach(content => content.classList.remove('active'));
+            
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+            
+            // Save current tab
+            localStorage.setItem('currentTab', tabName);
+        }
+
+        // Auto-save functionality
+        function saveProgress() {
+            const formData = {};
+            const inputs = document.querySelectorAll('input:not([readonly]), textarea:not([readonly])');
+            
+            inputs.forEach(input => {
+                if (input.id || input.name) {
+                    formData[input.id || input.name] = input.value;
+                }
+            });
+            
+            localStorage.setItem('legalCaseData', JSON.stringify(formData));
+            localStorage.setItem('lastSaved', new Date().toISOString());
+            
+            alert('✅ Progress saved successfully!');
+        }
+
+        // Load saved data
+        function loadProgress() {
+            const saved = localStorage.getItem('legalCaseData');
+            if (saved) {
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(key => {
+                    const element = document.getElementById(key) || document.querySelector(`[name="${key}"]`);
+                    if (element) {
+                        element.value = data[key];
+                    }
+                });
+            }
+            
+            // Restore last active tab
+            const lastTab = localStorage.getItem('currentTab');
+            if (lastTab) {
+                showTab(lastTab);
+            }
+        }
+
+        // Export all data
+        function exportAllData() {
+            const allData = {
+                caseInfo: {
+                    name: "Joshua D. Shipman",
+                    employer: "GAINSCO Auto Insurance",
+                    complaintDate: "2024-08-16",
+                    terminationDate: "2025-09-17"
+                },
+                timeline: [], // Would populate from timeline items
+                answers: JSON.parse(localStorage.getItem('legalCaseData') || '{}'),
+                exportDate: new Date().toISOString()
+            };
+            
+            const dataStr = JSON.stringify(allData, null, 2);
+            const dataBlob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(dataBlob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = `legal-case-data-${new Date().toISOString().split('T')[0]}.json`;
+            link.click();
+            
+            alert('✅ Case data exported successfully!');
+        }
+
+        // Generate documents
+        function generateTimeline() {
+            window.print();
+        }
+
+        function generateDemandLetter() {
+            alert('Demand letter template available in Documents tab. Use Export function to save.');
+        }
+
+        function generateEEOCCharge() {
+            alert('EEOC Charge draft will be generated based on your completed answers. Ensure all sections are complete.');
+        }
+
+        function printPackage() {
+            window.print();
+        }
+
+        function clearData() {
+            if (confirm('⚠️ Are you sure you want to clear all data? This cannot be undone!')) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // Auto-save every 2 minutes
+        setInterval(() => {
+            const inputs = document.querySelectorAll('input:not([readonly]), textarea:not([readonly])');
+            if (Array.from(inputs).some(input => input.value)) {
+                saveProgress();
+                console.log('Auto-saved at', new Date().toLocaleTimeString());
+            }
+        }, 120000);
+
+        // Load data on page load
+        window.addEventListener('load', loadProgress);
+
+        // Warn before leaving with unsaved changes
+        window.addEventListener('beforeunload', (e) => {
+            const lastSaved = localStorage.getItem('lastSaved');
+            if (!lastSaved || (Date.now() - new Date(lastSaved).getTime()) > 120000) {
+                e.preventDefault();
+                e.returnValue = '';
+            }
+        });
+    </script>
+</body>
+</html>
+

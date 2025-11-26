@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elite Legal Case Builder - Employment Discrimination &amp; Retaliation Specialist</title>
+    <style>
+        :root {
+  /* Primitive Color Tokens */
+  --color-white: rgba(255, 255, 255, 1);
+  --color-black: rgba(0, 0, 0, 1);
+  --color-cream-50: rgba(252, 252, 249, 1);
+  --color-cream-100: rgba(255, 255, 253, 1);
+  --color-gray-200: rgba(245, 245, 245, 1);
+  --color-gray-300: rgba(167, 169, 169, 1);
+  --color-gray-400: rgba(119, 124, 124, 1);
+  --color-slate-500: rgba(98, 108, 113, 1);
+  --color-brown-600: rgba(94, 82, 64, 1);
+  --color-charcoal-700: rgba(31, 33, 33, 1);
+  --color-charcoal-800: rgba(38, 40, 40, 1);
+  --color-slate-900: rgba(19, 52, 59, 1);
+  --color-teal-300: rgba(50, 184, 198, 1);
+  --color-teal-400: rgba(45, 166, 178, 1);
+  --color-teal-500: rgba(33, 128, 141, 1);
+  --color-teal-600: rgba(29, 116, 128, 1);
+  --color-teal-700: rgba(26, 104, 115, 1);
+  --color-teal-800: rgba(41, 150, 161, 1);
+  --color-red-400: rgba(255, 84, 89, 1);
+  --color-red-500: rgba(192, 21, 47, 1);
+  --color-orange-400: rgba(230, 129, 97, 1);
+  --color-orange-500: rgba(168, 75, 47, 1);
+
+  /* RGB versions for opacity control */
+  --color-brown-600-rgb: 94, 82, 64;
+  --color-teal-500-rgb: 33, 128, 141;
+  --color-slate-900-rgb: 19, 52, 59;
+  --color-slate-500-rgb: 98, 108, 113;
+  --color-red-500-rgb: 192, 21, 47;
+  --color-red-400-rgb: 255, 84, 89;
+  --color-orange-500-rgb: 168, 75, 47;
+  --color-orange-400-rgb: 230, 129, 97;
+
+  --color-background: var(--color-cream-50);
+  --color-surface: var(--color-cream-100);
+  --color-text: var(--color-slate-900);
+  --color-text-secondary: var(--color-slate-500);
+  --color-primary: var(--color-teal-500);
+  --color-primary-hover: var(--color-teal-600);
+  --color-primary-active: var(--color-teal-700);
+  --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+  --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+  --color-btn-primary-text: var(--color-cream-50);
+  --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+  --color-error: var(--color-red-500);
+  --color-success: var(--color-teal-500);
+  --color-warning: var(--color-orange-500);
+  --color-info: var(--color-slate-500);
+  --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+
+  /* Legal theme colors */
+  --color-legal-navy: #1a365d;
+  --color-legal-gold: #d4af37;
+  --color-legal-dark: #0f2942;
+  
+  /* Typography */
+  --font-family-base: "FKGroteskNeue", "Geist", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 14px;
+  --font-size-lg: 16px;
+  --font-size-xl: 18px;
+  --font-size-2xl: 20px;
+  --font-size-3xl: 24px;
+  --font-size-4xl: 30px;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --letter-spacing-tight: -0.01em;
+
+  /* Spacing */
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+
+  /* Border Radius */
+  --radius-sm: 6px;
+  --radius-base: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.04), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+
+  /* Animation */
+  --duration-fast: 150ms;
+  --duration-normal: 250ms;
+  --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@font-face {
+  font-family: 'FKGroteskNeue';
+  src: url('https://r2cdn.perplexity.ai/fonts/FKGroteskNeue.woff2') format('woff2');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-base);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    line-height: var(--line-height-normal);
+    font-size: var(--font-size-base);
+}
+
+.app-header {
+    background: linear-gradient(135deg, var(--color-legal-dark) 0%, var(--color-legal-navy) 100%);
+    color: white;
+    padding: var(--space-24) var(--space-32);
+    box-shadow: var(--shadow-md);
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.app-title {
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-8);
+    letter-spacing: var(--letter-spacing-tight);
+}
+
+.app-subtitle {
+    font-size: var(--font-size-lg);
+    opacity: 0.9;
+    color: var(--color-legal-gold);
+}
+
+.nav-tabs {
+    display: flex;
+    gap: var(--space-4);
+    margin-top: var(--space-24);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    flex-wrap: wrap;
+}
+
+.nav-tab {
+    padding: var(--space-12) var(--space-24);
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    transition: all var(--duration-fast) var(--ease-standard);
+    white-space: nowrap;
+}
+
+.nav-tab:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.nav-tab.active {
+    border-bottom-color: var(--color-legal-gold);
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.main-content {
+    max-width: 1200px;
+    margin: var(--space-32) auto;
+    padding: 0 var(--space-32);
+}
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+.card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-32);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-card-border);
+    margin-bottom: var(--space-24);
+}
+
+.welcome-card {
+    text-align: center;
+    padding: var(--space-32) var(--space-32) 48px;
+}
+
+.welcome-icon {
+    font-size: 48px;
+    margin-bottom: var(--space-24);
+}
+
+.welcome-title {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-16);
+    color: var(--color-legal-navy);
+}
+
+.welcome-text {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-24);
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn {
+    padding: var(--space-12) var(--space-32);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    border: none;
+    border-radius: var(--radius-base);
+    cursor: pointer;
+    transition: all var(--duration-fast) var(--ease-standard);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+.btn-primary {
+    background: var(--color-legal-navy);
+    color: white;
+    padding: var(--space-16) var(--space-32);
+    font-size: var(--font-size-lg);
+}
+
+.btn-primary:hover {
+    background: var(--color-legal-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-secondary {
+    background: var(--color-secondary);
+    color: var(--color-text);
+}
+
+.btn-secondary:hover {
+    background: var(--color-secondary-hover);
+}
+
+.progress-container {
+    margin-bottom: var(--space-32);
+}
+
+.progress-text {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: var(--space-8);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.progress-bar-bg {
+    background: var(--color-secondary);
+    height: 8px;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, var(--color-primary) 0%, var(--color-legal-gold) 100%);
+    height: 100%;
+    transition: width var(--duration-normal) var(--ease-standard);
+}
+
+.section-header {
+    margin-bottom: var(--space-32);
+}
+
+.section-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-8);
+    color: var(--color-legal-navy);
+}
+
+.section-description {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-base);
+}
+
+.form-group {
+    margin-bottom: var(--space-24);
+}
+
+.form-label {
+    display: block;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-8);
+    color: var(--color-text);
+}
+
+.form-input,
+.form-textarea,
+.form-select {
+    width: 100%;
+    padding: var(--space-12);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    font-size: var(--font-size-base);
+    font-family: var(--font-family-base);
+    background: var(--color-surface);
+    color: var(--color-text);
+    transition: border-color var(--duration-fast) var(--ease-standard);
+}
+
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-navigation {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-16);
+    margin-top: var(--space-32);
+    padding-top: var(--space-24);
+    border-top: 1px solid var(--color-border);
+}
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-24);
+    margin-bottom: var(--space-32);
+}
+
+.strength-meter {
+    margin: var(--space-24) 0;
+}
+
+.meter-label {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-16);
+}
+
+.meter-bar {
+    height: 40px;
+    background: linear-gradient(90deg, #ef4444 0%, #f59e0b 33%, #10b981 66%, #059669 100%);
+    border-radius: var(--radius-base);
+    position: relative;
+    margin-bottom: var(--space-8);
+}
+
+.meter-indicator {
+    position: absolute;
+    top: -8px;
+    width: 4px;
+    height: 56px;
+    background: var(--color-legal-navy);
+    transition: left var(--duration-normal) var(--ease-standard);
+}
+
+.meter-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.claim-analysis {
+    margin-bottom: var(--space-24);
+}
+
+.claim-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-12);
+}
+
+.claim-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+}
+
+.claim-strength {
+    padding: var(--space-4) var(--space-12);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+}
+
+.claim-strength.strong {
+    background: rgba(5, 150, 105, 0.15);
+    color: #059669;
+}
+
+.claim-strength.moderate {
+    background: rgba(245, 158, 11, 0.15);
+    color: #d97706;
+}
+
+.claim-strength.weak {
+    background: rgba(239, 68, 68, 0.15);
+    color: #dc2626;
+}
+
+.elements-checklist {
+    list-style: none;
+    margin-top: var(--space-12);
+}
+
+.elements-checklist li {
+    padding: var(--space-8) 0;
+    display: flex;
+    align-items: start;
+    gap: var(--space-8);
+}
+
+.elements-checklist li::before {
+    content: "✓";
+    color: var(--color-success);
+    font-weight: var(--font-weight-bold);
+    flex-shrink: 0;
+}
+
+.two-column {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-24);
+    margin-bottom: var(--space-32);
+}
+
+.strength-list,
+.weakness-list {
+    list-style: none;
+}
+
+.strength-list li,
+.weakness-list li {
+    padding: var(--space-12);
+    margin-bottom: var(--space-8);
+    border-radius: var(--radius-base);
+    display: flex;
+    align-items: start;
+    gap: var(--space-8);
+}
+
+.strength-list li {
+    background: rgba(5, 150, 105, 0.08);
+    border-left: 3px solid #059669;
+}
+
+.weakness-list li {
+    background: rgba(245, 158, 11, 0.08);
+    border-left: 3px solid #d97706;
+}
+
+.timeline-container {
+    position: relative;
+    padding: var(--space-24) 0;
+}
+
+.timeline-event {
+    position: relative;
+    padding-left: var(--space-32);
+    margin-bottom: var(--space-24);
+    border-left: 3px solid var(--color-border);
+}
+
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -8px;
+    top: 0;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--color-surface);
+    border: 3px solid var(--color-primary);
+}
+
+.timeline-event.positive::before {
+    border-color: #059669;
+}
+
+.timeline-event.negative::before {
+    border-color: #dc2626;
+}
+
+.timeline-event.complaint::before {
+    border-color: #d97706;
+}
+
+.timeline-date {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--space-4);
+}
+
+.timeline-content {
+    font-size: var(--font-size-base);
+}
+
+.document-item {
+    padding: var(--space-16);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-base);
+    margin-bottom: var(--space-16);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.document-info h3 {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-4);
+}
+
+.document-info p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.btn-download {
+    background: var(--color-primary);
+    color: white;
+    padding: var(--space-8) var(--space-16);
+}
+
+.btn-download:hover {
+    background: var(--color-primary-hover);
+}
+
+.agenda-item {
+    padding: var(--space-16);
+    border-left: 3px solid var(--color-legal-gold);
+    margin-bottom: var(--space-16);
+    background: var(--color-bg-1);
+    border-radius: var(--radius-base);
+}
+
+.agenda-number {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-legal-navy);
+    margin-bottom: var(--space-4);
+}
+
+.agenda-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
+    margin-bottom: var(--space-8);
+}
+
+.agenda-details {
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    margin: var(--space-24) 0;
+}
+
+.pro-tip {
+    background: var(--color-bg-2);
+    border-left: 3px solid var(--color-legal-gold);
+    padding: var(--space-16);
+    border-radius: var(--radius-base);
+    margin: var(--space-24) 0;
+}
+
+.pro-tip-label {
+    font-weight: var(--font-weight-bold);
+    color: var(--color-legal-gold);
+    margin-bottom: var(--space-8);
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+}
+
+.footer {
+    text-align: center;
+    padding: var(--space-32);
+    color: var(--color-text-secondary);
+    font-size: var(--font-size-sm);
+    border-top: 1px solid var(--color-border);
+    margin-top: var(--space-32);
+}
+
+@media (max-width: 768px) {
+    .two-column {
+        grid-template-columns: 1fr;
+    }
+    
+    .nav-tabs {
+        overflow-x: auto;
+    }
+    
+    .main-content {
+        padding: 0 var(--space-16);
+    }
+}
+    </style>
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-content">
+            <h1 class="app-title">⚖️ Elite Legal Case Builder</h1>
+            <p class="app-subtitle">Employment Discrimination &amp; Retaliation Specialist | Pro Se Representation Support</p>
+            <nav class="nav-tabs">
+                <button class="nav-tab active" data-tab="home">Home</button>
+                <button class="nav-tab" data-tab="builder">Case Builder</button>
+                <button class="nav-tab" data-tab="analysis">Analysis</button>
+                <button class="nav-tab" data-tab="documents">Documents</button>
+                <button class="nav-tab" data-tab="meeting">Good Faith Meeting</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <!-- HOME SECTION -->
+        <section id="home" class="section active">
+            <div class="card welcome-card">
+                <div class="welcome-icon">⚖️</div>
+                <h2 class="welcome-title">Welcome to Your Legal Case Builder</h2>
+                <p class="welcome-text">
+                    This professional application will guide you through a comprehensive case assessment process for employment discrimination and retaliation claims. Developed with the expertise of top-tier employment law firms, this system will help you document your case, analyze its strengths, and prepare professional materials for EEOC filings, good faith meetings, and arbitration proceedings.
+                </p>
+                <p class="welcome-text">
+                    You will answer 157 questions across 16 detailed sections covering your employment history, disability status, accommodation requests, retaliatory actions, and damages. Upon completion, receive a professional case analysis, generated legal documents, and a comprehensive good faith meeting package.
+                </p>
+                <button class="btn btn-primary" onclick="app.startCaseBuilder()">Start Case Assessment →</button>
+            </div>
+
+            <div class="pro-tip">
+                <div class="pro-tip-label">💡 Pro Se Tips</div>
+                <p>Take your time with each question. The more detailed your responses, the stronger your case analysis will be. Your answers are automatically saved, so you can return at any time to continue or update your information.</p>
+            </div>
+        </section>
+
+        <!-- CASE BUILDER SECTION -->
+        <section id="builder" class="section">
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span id="currentSectionName">Section 1 of 16</span>
+                    <span id="progressPercentage">0% Complete</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="progressBar" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div id="questionContainer"></div>
+                
+                <div class="form-navigation">
+                    <button class="btn btn-secondary" id="prevBtn" onclick="app.previousSection()">← Previous Section</button>
+                    <button class="btn btn-secondary" id="nextBtn" onclick="app.nextSection()">Next Section →</button>
+                    <button class="btn btn-primary" id="analyzeBtn" style="display: none;" onclick="app.analyzeCase()">Analyze My Case</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ANALYSIS SECTION -->
+        <section id="analysis" class="section">
+            <div class="card">
+                <div class="section-header">
+                    <h2 class="section-title">Case Strength Analysis</h2>
+                    <p class="section-description">Professional evaluation of your legal claims and evidence</p>
+                </div>
+
+                <div class="strength-meter">
+                    <div class="meter-label">Overall Case Strength</div>
+                    <div class="meter-bar">
+                        <div class="meter-indicator" id="strengthIndicator"></div>
+                    </div>
+                    <div class="meter-labels">
+                        <span>Weak</span>
+                        <span>Moderate</span>
+                        <span>Strong</span>
+                        <span>Very Strong</span>
+                    </div>
+                </div>
+
+                <div id="claimAnalysisContainer"></div>
+            </div>
+
+            <div class="card">
+                <h3 class="section-title">Timeline Visualization</h3>
+                <div class="chart-container">
+                    <canvas id="timelineChart"></canvas>
+                </div>
+            </div>
+
+            <div class="two-column">
+                <div class="card">
+                    <h3 class="section-title">Case Strengths</h3>
+                    <ul class="strength-list" id="strengthsList"></ul>
+                </div>
+                <div class="card">
+                    <h3 class="section-title">Areas Needing Attention</h3>
+                    <ul class="weakness-list" id="weaknessList"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3 class="section-title">Strategic Recommendations</h3>
+                <div id="recommendationsContainer"></div>
+            </div>
+        </section>
+
+        <!-- DOCUMENTS SECTION -->
+        <section id="documents" class="section">
+            <div class="card">
+                <div class="section-header">
+                    <h2 class="section-title">Legal Documents</h2>
+                    <p class="section-description">Download professional documents for your case</p>
+                </div>
+
+                <div id="documentsContainer"></div>
+            </div>
+        </section>
+
+        <!-- GOOD FAITH MEETING SECTION -->
+        <section id="meeting" class="section">
+            <div class="card">
+                <div class="section-header">
+                    <h2 class="section-title">Good Faith Meeting Package</h2>
+                    <p class="section-description">Comprehensive preparation for your meeting with company representatives</p>
+                </div>
+
+                <h3 style="margin-top: var(--space-24); margin-bottom: var(--space-16);">Meeting Agenda</h3>
+                <div id="meetingAgendaContainer"></div>
+
+                <h3 style="margin-top: var(--space-32); margin-bottom: var(--space-16);">Visual Presentation</h3>
+                <div class="chart-container">
+                    <canvas id="performanceChart"></canvas>
+                </div>
+
+                <div class="pro-tip" style="margin-top: var(--space-32);">
+                    <div class="pro-tip-label">💡 Meeting Preparation Tips</div>
+                    <p>Remain professional and fact-focused. Present your timeline chronologically. Use the visual aids to demonstrate the correlation between your protected activities and adverse actions. Be prepared to discuss reasonable settlement terms.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Elite Legal Case Builder. For informational purposes only. Not a substitute for legal advice.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
